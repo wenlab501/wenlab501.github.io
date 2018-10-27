@@ -1,0 +1,1845 @@
+ <!DOCTYPE html>
+ <html>
+ 	<head>
+ 	<meta charset="utf-8"/>
+ 	<meta property="og:url" content="http://wenlab.geog.ntu.edu.tw/censusmap/en/"/>
+ 	<meta property="og:title" content="Taiwan Interactive Census Atlas 1956-2010" />
+ 	<meta property="og:description" content="Explore Taiwan census data spatially and temporally. By Levi Westerveld at National Taiwan University and NTU Geography Lab for Geospatial Computational Science - Summer 2015." />
+ 	<meta property="og:image" content="http://i.imgsafe.org/123ba96.jpg"/>
+ 	<title>Taiwan Interactive Census Atlas 1956-2010</title> 
+ 	<!-- Link to CSS file -->
+ 	<link rel="stylesheet" type="text/css" href="css/layout.min.css" />
+ 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+
+ 	<script src="//fast.eager.io/j4LhsRCd2X.js"></script>
+
+ 	<!-- Leaflet map -->
+ 	<script src="js/leaflet.js"></script>
+ 	<!-- JQUERY -->
+ 	<script src="js/jquery.min.js"></script> 
+ 	<script src="js/jquery-ui.min.js"></script> 
+ 	<!-- layer control -->
+ 	<script src="js/styledLayerControl.js"></script> 
+ 	<!-- sidebar -->
+ 	<script src="js/leaflet-sidebar.js"></script> 
+ 	<!-- Highchart scripts -->
+ 	<script src="js/highcharts.js"></script> 
+ 	<!-- topojson read scripts -->
+	<script src="http://d3js.org/topojson.v1.min.js"></script> 
+ 	<script src="js/website.js"></script> 
+ </head>
+<body>
+
+		<div id="dialog" title="Taiwan Social Explorer &nbsp;&nbsp; 1956 – 2010">
+			<br>
+			<p>Welcome to Taiwan Social Explorer. An interactive map to explore census data spatially and temporally. </p>
+			<p>Use the control panel on the right to display different data layers. A map legend, figures, and datasets (.csv) can be accessed using the control panel on the left. </p>
+			<p>Data for this project was provided by the <a href="http://eng.stat.gov.tw/mp.asp?mp=5" style="color:blue; text-decoration:none;">Taiwan Census Office</a> (1956, 1966, 1980, and 1990 data) and the <a href="http://eng.dgbas.gov.tw/mp.asp?mp=2" style="color:blue; text-decoration:none;">Directorate-General of Budget, Accounting, and Statistics</a> (2000 and 2010 data). </p> 
+<!-- 			<p>Use this <a href="http://wenlab.geog.ntu.edu.tw/censusmap/" target="_blank">link</a> for a Chinese version</p>
+ -->
+			<br>
+			<hr>
+			<br>
+			<div id="share-buttons">
+						<a href="http://wenlab.geog.ntu.edu.tw/">
+							<img src="css/images/wen2.png"/></a>
+						<a href="http://www.geog.ntu.edu.tw/tw/">
+							<img src="css/images/ntu2.png"/></a>
+						<a href="http://www.psc.ntu.edu.tw/">
+							<img src="css/images/pop2.png"/></a>
+						<a href="http://www.facebook.com/sharer.php?u=http://wenlab.geog.ntu.edu.tw/censusmap/en/">
+							<img src="css/images/facebook2.png" alt="Facebook" /></a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://wenlab.geog.ntu.edu.tw/censusmap/en/">
+							<img src="css/images/linkedin2.png" alt="LinkedIn" /></a>
+						<a href="https://plus.google.com/share?url=http://wenlab.geog.ntu.edu.tw/censusmap/en/">
+							<img src="css/images/google2.png" class="google"/></a>
+						<a href="https://twitter.com/share?url=http://wenlab.geog.ntu.edu.tw/censusmap/en/&amp;name=Taiwan Census Interactive&amp;hashtags=taiwancensusinteractive" target="_blank">
+							<img src="css/images/twitter2.png" alt="Twitter" /></a>
+			</div>
+		</div>
+<div class= "chart" id="chart_pop">
+</div>
+<div class= "chart" id="chart_1956">
+</div>
+<div class= "chart" id="chart_1966">
+</div>
+<div class= "chart" id="chart_1980">
+</div>
+<div class= "chart" id="chart_1990">
+</div>
+<div class= "chart" id="chart_2000">
+</div>
+<div class= "chart" id="chart_2010">
+</div>
+<div class= "chart" id="chart_pie">
+</div>
+<div class= "chart" id="chart_pie2">
+</div>
+<div class= "chart" id="chart_marriage">
+</div>
+<div class= "chart" id="chart_education">
+</div>
+<div class= "chart" id="chart_employement">
+</div>
+<div class= "chart" id="chart_industry">
+</div>
+<div class= "chart" id="chart_occupation">
+</div>
+<div class= "chart" id="chart_residpop">
+</div>
+<div class= "chart" id="chart_residstat">
+</div>
+
+<div id="map">
+</div>
+
+<div id="sidebar" class="sidebar collapsed">	
+
+	<ul class="sidebar-tabs" role="tablist">
+		<li><a href="#legend" role="tab" class="legend"></a></li>
+		<hr style='margin:0px;'/>
+		<li><a href="#graphs" role="tab" class="graph"></a></li>
+		<hr style='margin:0px;'/>
+		<li><a href="#download" role="tab" class="data"></a></li>
+		<hr style='margin:0px;'/>
+		<li><a href="#info" role="tab" class="info"></a></li>
+	</ul>
+
+	<div class="sidebar-content active">
+		<!-- Legend tab -->
+		<div class="sidebar-pane" id="legend">
+			<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;LEGEND</span></p>
+			<br>
+			<br>
+			<div class="accordion">
+				<h3 class="dropdown"> Administrative Div. </h3>
+				<div>
+					<p><span class="legend_sub">Different Admin. Division (vs. 2012)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:rgba(0, 0, 0, 0.3); border-color:rgba(0, 0, 255, 1);"></div></th>
+							<th class="legend_des">NEW NAME</th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:rgba(0, 0, 0, 0.6); border-color:rgba(0, 0, 255, 1);"></div></th>
+							<td class="legend_des">NEW BORDER</td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Population Density </h3>
+				<div>
+					<p><span class="legend_sub">People / Sq. Km</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026; opacity:0.7;"></div></th>
+							<th class="legend_des"> > 10000 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.7;"></div></th>
+							<td class="legend_des"> 5000 - 10000 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 1000 - 5000 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 500 - 1000 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 500 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 50 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Ethnic Minorities </h3>
+				<div>
+					<p><span class="legend_sub">(%) Ethnic Minorities</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> > 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 20 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.7;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.7;"></div></th>
+							<th class="legend_des"> < 20 </th>
+						</tr>		
+					</table>
+					<p><span class="legend_sub">Ethnic Minorities</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ff0000;opacity:0.8;"></div></th>
+							<th class="legend_des"> Atayal </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffaa00;opacity:0.8;"></div></th>
+							<td class="legend_des"> Bunun </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#4d003d;opacity:0.8;"></div></th>
+							<td class="legend_des"> Tsou </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#64664d;opacity:0.8;"></div></th>
+							<td class="legend_des"> Saisiyat </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#00ff88;opacity:0.8;"></div></th>
+							<td class="legend_des"> Paiwan </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#00ccff;opacity:0.8;"></div></th>
+							<td class="legend_des"> Rukai </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ff0066;opacity:0.8;"></div></th>
+							<td class="legend_des"> Yami </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#0066ff;opacity:0.8;"></div></th>
+							<td class="legend_des"> Amis </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ee00ff;opacity:0.8;"></div></th>
+							<td class="legend_des"> Puyuma </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Age and Dependency ratios </h3>
+				<div>
+					<p><span class="legend_sub">Pop. (<14yrs) (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#800026;opacity:0.8;"></div></th>
+							<th class="legend_des"> > 50 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> 45 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 45 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 35 - 40 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 35 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 25 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 25 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 10 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Pop. (15 - 64yrs) (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#b10026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 80 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 75 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 75 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 65 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 65 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 55 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 55 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 50 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Pop. (>65yrs) (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> > 25 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 25 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 14 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 7 - 14 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.7;"></div></th>
+							<td class="legend_des"> 3 - 7 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.7;"></div></th>
+							<th class="legend_des"> < 3 </th>
+						</tr>		
+					</table>
+					<p><span class="legend_sub">Dependency ratio: ((<14yrs) + (>65yrs)) / (15 - 64yrs)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#b10026;opacity:0.8;"></div></th>
+							<th class="legend_des">100 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 90 - 100 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 80 - 90 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des">< 40 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Women of childbearing age (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des">> 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 55 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 55 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 45 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.7;"></div></th>
+							<td class="legend_des"> 40 - 45 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.7;"></div></th>
+							<th class="legend_des">< 40 </th>
+						</tr>		
+					</table>
+				</div>		
+				<h3 class="dropdown"> Gender ratio and Marrital status </h3>
+				<div>
+					<p><span class="legend_sub">Gender ratio<br>men/women (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#1b7837;opacity:0.8;"></div></th>
+							<th class="legend_des">> 110 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#5aae61;opacity:0.8;"></div></th>
+							<td class="legend_des"> 105 - 110 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#a6dba0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 102.5 - 105 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#d9f0d3;opacity:0.8;"></div></th>
+							<td class="legend_des"> 100 - 102.5 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e7d4e8;opacity:0.8;"></div></th>
+							<td class="legend_des"> 97.5 - 100 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#c2a5cf;opacity:0.8;"></div></th>
+							<td class="legend_des"> 95 - 97.5 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#9970ab;opacity:0.8;"></div></th>
+							<td class="legend_des"> 90 - 95 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#762a83;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 90 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Unmarried pop. gender ratio<br>unmarr. men/ unmarr. women (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#6e016b;opacity:0.8;"></div></th>
+							<th class="legend_des">> 200 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#88419d;opacity:0.8;"></div></th>
+							<td class="legend_des"> 150 - 200 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c6bb1;opacity:0.8;"></div></th>
+							<td class="legend_des"> 140 - 150 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c96c6;opacity:0.8;"></div></th>
+							<td class="legend_des"> 130 - 140 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#9ebcda;opacity:0.8;"></div></th>
+							<td class="legend_des"> 120 - 130 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bfd3e6;opacity:0.8;"></div></th>
+							<td class="legend_des"> 110 - 120 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#edf8fb;opacity:0.8;"></div></th>
+							<td class="legend_des"> 100 - 110 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e7d4e8;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 100 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Widow(er) pop. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#045a8d;opacity:0.8;"></div></th>
+							<th class="legend_des">> 20 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#2b8cbe;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#74a9cf;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bdc9e1;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f1eef6;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Divorced pop. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#0570b0;opacity:0.8;"></div></th>
+							<th class="legend_des">> 10 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#74a9cf;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bdc9e1;opacity:0.8;"></div></th>
+							<td class="legend_des"> 2.5 - 5 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f1eef6;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 2.5 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Illiteracy and Education attainment </h3>
+				<div>
+					<p><span class="legend_sub">Illiterate pop. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 70 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Pop. w/ primary edu. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 70 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Pop. w/ junior high edu. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#993404;opacity:0.8;"></div></th>
+							<th class="legend_des">> 30 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#d95f0e;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Pop. w/ high school edu. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 40 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 40 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Pop. w/ college edu. (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 50 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Employement and Unemployment </h3>
+				<div>
+					<p><span class="legend_sub">Employement rate (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 80 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 40 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Men or Women employement rate rate (%) (same legend)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#800026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 90 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> 80 - 90 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 40 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 20 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">Unemployment rate (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 20 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Occupation </h3>
+				<div>
+					<p><span class="legend_sub">Professional technicians (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 15 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 15 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 2.5 - 5 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 2.5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">Governance and Senior Officials (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<th class="legend_des">> 5 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 2.5 - 5 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 2.5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">Clerical Support Workers (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 40 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 30 - 40 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">Sales and Business (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 30 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">Service Workers (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 30 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">Agricultural Workers (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#32000f;opacity:0.8;"></div></th>
+								<th class="legend_des">> 90 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#800026;opacity:0.8;"></div></th>
+								<td class="legend_des"> 80 - 90 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<td class="legend_des"> 70 - 80 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 60 - 70 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+								<td class="legend_des"> 50 - 60 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 40 - 50 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 30 - 40 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 10 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">Operators and Laborers (%)</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#b10026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 60 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 50 - 60 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+								<td class="legend_des"> 40 - 50 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 30 - 40 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Graphs tab -->
+		<div class="sidebar-pane" id="graphs">
+			<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;FIGURES</span></p>
+			<br>
+			<hr>
+			<p id="info">toggle the graph icon to<br>open and close figures.</p>
+			<hr>
+
+			<div class="accordion">
+
+				<h3 class="dropdown"> Population </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class="click_icon" id="click_pop"></div></td>
+						<th class="chart_name" >population change</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Ethnic Minorities </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_pie"></div></td>
+						<th class="chart_name" >1956 - breakdown</th>
+					</tr>
+					</table>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_pie2"></div></td>
+						<th class="chart_name" >2000 - breakdown</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Age and Dependency ratios </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_1956"></div></td>
+						<th class="chart_name" >1956 - pop. pyramid</th>
+					</tr>
+					</table>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_1966"></div></td>
+						<th class="chart_name" >1966 - pop. pyramid</th>
+					</tr>
+					</table>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_1980"></div></td>
+						<th class="chart_name" >1980 - pop. pyramid</th>
+					</tr>
+					</table>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_1990"></div></td>
+						<th class="chart_name" >1990 - pop. pyramid</th>
+					</tr>
+					</table>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_2000"></div></td>
+						<th class="chart_name" >2000 - pop. pyramid</th>
+					</tr>
+					</table>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_2010"></div></td>
+						<th class="chart_name" >2010 - pop. pyramid</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Gender ratio and Marrital status </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_marriage"></div></td>
+						<th class="chart_name" >Changes in marrital status</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Illiteracy and Education attainment </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_education"></div></td>
+						<th class="chart_name" >Changes in education attainment</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Employement and Unemployment </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_employement"></div></td>
+						<th class="chart_name" >Change in employment participation</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Occupation </h3>
+				<div>
+					<table>
+					<tr>					
+						<td><div class = "click_icon" id="click_occupation"></div></td>
+						<th class="chart_name" >Changes in Occupations</th>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Download tab -->
+		<div class="sidebar-pane" id="download">
+			<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA</span></p>
+			<br>
+			<br>
+			<div class="accordion">
+
+				<h3 class="dropdown"> Population Density </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1956_pop_density.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1956 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Ethnic Minorities </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1956_indigenous_ratio.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1956 % Aboriginal people</th>
+						</tr>
+						<tr>
+							<th><a href="download/2000_indigenous_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 % Aboriginal people</td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_atayal.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Atayal </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_atayal.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Atayal </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_bunun.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Bunun </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_bunun.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Bunun </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_tsou.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Tsou </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_tsou.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Tsou </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_saisiyat.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Saisiyat </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_saisiyat.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Saisiyat </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_paiwan.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Paiwan </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_paiwan.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Paiwan </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_rukai.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Rukai </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_rukai.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Rukai </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_yami.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Yami </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_yami.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Yami </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_amis.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Amis </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_amis.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Amis </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_puyuma.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 Puyuma </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_puyuma.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 Puyuma</td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Age and Dependency ratios </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_young.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 pop. under 14 yrs/old </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_young.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 pop. under 14 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_young.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. under 14 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_young.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 pop. under 14 yrs/old</th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_young.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 pop. under 14 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_adult.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 pop. 15-64 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_adult.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1980 pop. 15-64 yrs/old </th>
+						</tr>
+						<tr>
+							<th><a href="download/1990_adult.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. 15-64 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_adult.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 pop. 15-64 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_adult.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2010 pop. 15-64 yrs/old </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 pop. over 65 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 pop. over 65 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. over 65 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 pop. over 65 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 pop. over 65 yrs/old </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 dependency ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 dependency ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 dependency ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 dependency ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 women of childbearing age </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 women of childbearing age </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 women of childbearing age </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 women of childbearing age </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Gender ratio and Marrital status </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1956_ratio.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1956 gender ratio </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 gender ratio</td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 gender ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_ratio.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 gender ratio </th>
+						</tr>
+						<tr>
+							<th><a href="download/2000_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 gender ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 gender ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_unmmaried.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 unmarried pop. gender ratio </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_unmarried.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 unmarried pop. gender ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_unmarried.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 unmarried pop. gender ratio </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_unmarried.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 unmarried pop. gender ratio </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 widow(er) pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 widow(er) pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 widow(er) pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 widow(er) pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 divorced pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 divorced pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 divorced pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 divorced pop. </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Illiteracy and Education attainment </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_illiterate.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 illiterate pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_illiterate.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 illiterate pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_illiterate.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 illiterate pop. </th>
+						</tr>
+						<tr>
+							<th><a href="download/2000_illiterate.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 illiterate pop. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_xiao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 pop. w/ primary edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_xiao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 pop. w/ primary edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_xiao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. w/ primary edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_xiao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 pop. w/ primary edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_xiao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 pop. w/ primary edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_chu.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 pop. w/ junior high edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_chu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 pop. w/ junior high edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_chu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. w/ junior high edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_chu.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 pop. w/ junior high edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_chu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 pop. w/ junior high edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_gao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 pop. w/ high school edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_gao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 pop. w/ high school edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_gao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. w/ high school edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_gao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 pop. w/ high school edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_gao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 pop. w/ high school edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_da.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 pop. w/ college edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_da.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 pop. w/ college edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_da.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 pop. w/ college edu. </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_da.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 pop. w/ college edu. </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_da.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 pop. w/ college edu. </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Employement and Unemployment </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_labor.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Employement rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_labor.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Employement rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_labor.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Employement rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_mlab.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Men employement rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_mlab.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Men employement rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_mlab.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Men employement rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_wlab.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 Women employement rate </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_wlab.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1980 Women employement rate </th>
+						</tr>
+						<tr>
+							<th><a href="download/1990_wlab.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 Women employement rate </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_emplo.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Unemployment rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_emplo.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Unemployment rate </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_emplo.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Unemployment rate </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> Occupation </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_spec.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Professional tech. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_spec.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Professional tech. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_spec.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Professional tech. </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_mana.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Gov. and Senior Officials </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_mana.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Gov. and Senior Officials </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_mana.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Gov. and Senior Officials </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_suke.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 Clerical Support Workers </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_suke.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1980 Clerical Support Workers </th>
+						</tr>
+						<tr>
+							<th><a href="download/1990_suke.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 Clerical Support Workers </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_sale.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Sales and Business </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_sale.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Sales and Business </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_sale.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Sales and Business </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_fuwu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Service Workers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_fuwu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Service Workers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_fuwu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Service Workers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_farm.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Agricultural Workers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_farm.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Agricultural Workers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_farm.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Agricultural Workers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_trav.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 Operators and Laborers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_trav.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 Operators and Laborers </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_trav.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 Operators and Laborers </td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Graphs tab -->
+		<div class="sidebar-pane" id="info">
+			<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INFO</span></p>
+			<br>
+			<br>
+				<div id="info_content">
+					<p>Welcome to Taiwan Social Explorer. An interactive map to explore census data spatially and temporally. </p>
+					<p>Use the control panel on the right to display different data layers. A map legend, figures, and datasets (.csv) can be accessed using the control panel on the left. </p>
+					<p>Data for this project was provided by the <a href="http://eng.stat.gov.tw/mp.asp?mp=5" style="color:blue; text-decoration:none;">Taiwan Census Office</a> (1956, 1966, 1980, and 1990 data) and the <a href="http://eng.dgbas.gov.tw/mp.asp?mp=2" style="color:blue; text-decoration:none;">Directorate-General of Budget, Accounting, and Statistics</a> (2000 and 2010 data). </p>
+					<p>Project by <a href="mailto:levi.westerveld@gmail.com" style="color:blue; text-decoration:none;">Levi Westerveld</a> at NTU Department of Geography under the supervision of <a href="mailto:wenthung@gmail.com" style="color:blue; text-decoration:none;"> Wen Tzai-Hung</a>, Associate Professor of Geography at NTU. </p> 
+				</div>
+		</div>
+
+
+	</div>
+
+	<script>
+
+		var map = L.map('map', {
+			center: [23.60, 121.30],
+			zoom: 8,
+			zoomControl: false,
+			layers: [aerial],
+			attributionControl:false,
+		});
+		var baseMaps = [
+		{ 
+			groupName : "Basemaps",
+			expanded : false,
+			layers    : {
+				"Aerial Imagery" :  aerial,
+				"Grayscale" 	 :  aerial2
+			}
+		}                           
+		];  
+		var overlays = [ 
+		{
+			groupName : "Administrative Divisions",
+			expanded  : false,
+			layers    : { 
+				"1956/09": town_1956,
+				"1966/12": town_1966,
+				"1980/12": town_1980,
+				"1990/12": town_1990,
+				"2000/12": town_2000,
+				"2010/12": town_2010
+			}   
+		},  
+		{
+			groupName : "Population Density",
+			expanded  : false,
+			layers    : { 
+				"1956": pop_den_1956,
+				"1966": pop_den_1966,
+				"1980": pop_den_1980,
+				"1990": pop_den_1990,
+				"2000": pop_den_2000,
+				"2010": pop_den_2010
+			}   
+		},
+		{
+			groupName : "Ethnic Minorities",
+			expanded  : false,
+			layers    : { 
+				"1956 % Aboriginal people": total_1956,
+				"2000 % Aboriginal people": total_2000,
+				"1956 Atayal": atayal_1956,
+				"2000 Atayal": atayal_2000,
+				"1956 Bunun": bunun_1956,
+				"2000 Bunun": bunun_2000,
+				"1956 Tsou": tsou_1956,
+				"2000 Tsou": tsou_2000,
+				"1956 Saisiyat": saisiyat_1956,
+				"2000 Saisiyat": saisiyat_2000,
+				"1956 Paiwan": paiwan_1956,
+				"2000 Paiwan": paiwan_2000,
+				"1956 Rukai": rukai_1956,
+				"2000 Rukai": rukai_2000,
+				"1956 Yami": yami_1956,
+				"2000 Yami": yami_2000,
+				"1956 Amis": amis_1956,
+				"2000 Amis": amis_2000,
+				"1956 Puyuma": puyuma_1956,
+				"2000 Puyuma": puyuma_2000
+			}       
+		}, 
+		{
+			groupName : "Age - Dependency ratios",
+			expanded  : false,
+			layers    : { 
+				"1966 pop. under 14 yrs/old": young_1966,
+				"1980 pop. under 14 yrs/old": young_1980,
+				"1990 pop. under 14 yrs/old": young_1990,
+				"2000 pop. under 14 yrs/old": young_2000,
+				"2010 pop. under 14 yrs/old": young_2010,
+				"1966 pop. 15-64 yrs/old": adult_1966,
+				"1980 pop. 15-64 yrs/old": adult_1980,
+				"1990 pop. 15-64 yrs/old": adult_1990,
+				"2000 pop. 15-64 yrs/old": adult_2000,
+				"2010 pop. 15-64 yrs/old": adult_2010,
+				"1966 pop. over 65 yrs/old": old_1966,
+				"1980 pop. over 65 yrs/old": old_1980,
+				"1990 pop. over 65 yrs/old": old_1990,
+				"2000 pop. over 65 yrs/old": old_2000,
+				"2010 pop. over 65 yrs/old": old_2010,
+				"1966  dependency ratio": work_1966,
+				"1980  dependency ratio": work_1980,
+				"1990  dependency ratio": work_1990,
+				"2000  dependency ratio": work_2000,
+				"1966  women of childbearing age": women_1966,
+				"1980  women of childbearing age": women_1980,
+				"1990  women of childbearing age": women_1990,
+				"2000  women of childbearing age": women_2000
+			}       
+		}, 
+		{
+			groupName : "Gender ratio - Marrital status",
+			expanded  : false,
+			layers    : { 
+				"1956  gender ratio (m/w)": ratio_1956,
+				"1966  gender ratio (m/w)": ratio_1966,
+				"1980  gender ratio (m/w)": ratio_1980,
+				"1990  gender ratio (m/w)": ratio_1990,
+				"2000  gender ratio (m/w)": ratio_2000,
+				"2010  gender ratio (m/w)": ratio_2010,
+				"1966  unmarried pop. gender ratio": unmarried_1966,
+				"1980  unmarried pop. gender ratio": unmarried_1980,
+				"1990  unmarried pop. gender ratio": unmarried_1990,
+				"2000  unmarried pop. gender ratio": unmarried_2000,
+				"1966  widow(er) pop.": widow_1966,
+				"1980  widow(er) pop.": widow_1980,
+				"1990  widow(er) pop.": widow_1990,
+				"2000  widow(er) pop.": widow_2000,
+				"1966  divorced pop.": divorced_1966,
+				"1980  divorced pop.": divorced_1980,
+				"1990  divorced pop.": divorced_1990,
+				"2000  divorced pop.": divorced_2000
+			}        
+		}, 
+		{
+			groupName : "Illiteracy - Education attainment",
+			expanded  : false,
+			layers    : { 
+				"1966  illiterate pop.": illiterate_1966,
+				"1980  illiterate pop.": illiterate_1980,
+				"1990  illiterate pop.": illiterate_1990,
+				"2000  illiterate pop.": illiterate_2000,
+				"1966  pop. w/ primary edu.": xiao_1966,
+				"1980  pop. w/ primary edu.": xiao_1980,
+				"1990  pop. w/ primary edu.": xiao_1990,
+				"2000  pop. w/ primary edu.": xiao_2000,
+				"2010  pop. w/ primary edu.": xiao_2010,
+				"1966  pop. w/ junior high edu.": chu_1966,
+				"1980  pop. w/ junior high edu.": chu_1980,
+				"1990  pop. w/ junior high edu.": chu_1990,
+				"2000  pop. w/ junior high edu.": chu_2000,
+				"2010  pop. w/ junior high edu.": chu_2010,
+				"1966  pop. w/ high school edu.": gao_1966,
+				"1980  pop. w/ high school edu.": gao_1980,
+				"1990  pop. w/ high school edu.": gao_1990,
+				"2000  pop. w/ high school edu.": gao_2000,
+				"2010  pop. w/ high school edu.": gao_2010,
+				"1966  pop. w/ college edu.": da_1966,
+				"1980  pop. w/ college edu.": da_1980,
+				"1990  pop. w/ college edu.": da_1990,
+				"2000  pop. w/ college edu.": da_2000,
+				"2010  pop. w/ college edu.": da_2010
+			}        
+		}, 
+		{
+			groupName : "Employement",
+			expanded  : false,
+			layers    : { 
+				"1966 employement rate": labor_1966,
+				"1980 employement rate": labor_1980,
+				"1990 employement rate": labor_1990,
+				"1966 men employement rate": mlab_1966,
+				"1980 men employement rate": mlab_1980,
+				"1990 men employement rate": mlab_1990,
+				"1966 women employement rate": wlab_1966,
+				"1980 women employement rate": wlab_1980,
+				"1990 women employement rate": wlab_1990,
+				"1966 unemployment rate": emplo_1966,
+				"1980 unemployment rate": emplo_1980,
+				"1990 unemployment rate": emplo_1990
+			}   
+		},  
+		{
+			groupName : "Occupation",
+			expanded  : false,
+			layers    : { 
+				"1966  Professional tech.": spec_1966,
+				"1980  Professional tech.": spec_1980,
+				"1990  Professional tech.": spec_1990,
+				"1966  Gov. and Senior Officials ": mana_1966,
+				"1980  Gov. and Senior Officials ": mana_1980,
+				"1990  Gov. and Senior Officials ": mana_1990,
+				"1966  Clerical Support Workers ": suke_1966,
+				"1980  Clerical Support Workers ": suke_1980,
+				"1990  Clerical Support Workers ": suke_1990,
+				"1966  Sales and Business ": sale_1966,
+				"1980  Sales and Business ": sale_1980,
+				"1990  Sales and Business ": sale_1990,
+				"1966  Service Workers ": fuwu_1966,
+				"1980  Service Workers ": fuwu_1980,
+				"1990  Service Workers ": fuwu_1990,
+				"1966  Agricultural Workers ": farm_1966,
+				"1980  Agricultural Workers ": farm_1980,
+				"1990  Agricultural Workers ": farm_1990,
+				"1966  Operators and Laborers ": trav_1966,
+				"1980  Operators and Laborers ": trav_1980,
+				"1990  Operators and Laborers ": trav_1990
+			}   
+		},                                              
+		];
+		var options = {
+			container_width     : "240px",
+			group_maxHeight     : "180px",
+			exclusive  			: false
+		};
+		var control = L.Control.styledLayerControl(baseMaps, overlays, options);
+		map.addControl(control);
+		var sidebar = L.control.sidebar('sidebar').addTo(map);
+		L.control.scale({maxWidth:250, metric:true, imperial:false, position:'bottomleft' }).addTo(map);
+		L.control.attribution({prefix:false}).addTo(map);
+
+	</script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51280335-5', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

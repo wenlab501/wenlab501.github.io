@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>None/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>None/basic/rstudioserver/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/basic/jupyterhub/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/basic/shinyserver/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/basic/vsftpd/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/basic/postgresql/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/basic/geoserver/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>None/extra/databaseinjupyterhub/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/extra/usejupyterandrstudio/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>None/about/</loc>
+     <lastmod>2015-10-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>

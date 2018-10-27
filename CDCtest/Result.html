@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title>Leaflet Essentials</title>
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css" >
+	<link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<link rel="stylesheet" href="css/leaflet.extra-markers.min.css">
+        <script type="text/javascript" src="js/leaflet-geodesy.js"></script>
+	<script>
+		ACCESS_TOKEN = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
+		MB_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery c <a href="http://mapbox.com">Mapbox</a>';
+		MB_URL = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + ACCESS_TOKEN;
+		OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		OSM_ATTRIB = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+	</script>
+<style>
+	.info {
+		padding: 6px 8px;
+		font: 14px/16px Arial, Helvetica, sans-serif;
+		background: white;
+		background: rgba(255,255,255,0.8);
+		box-shadow: 0 0 15px rgba(0,0,0,0.2);
+		border-radius: 5px;
+	}
+	.info h4 {
+		margin: 0 0 5px;
+		color: #777;
+	}
+
+	.legend {
+		text-align: left;
+		line-height: 18px;
+		color: #555;
+	}
+	.legend i {
+		width: 18px;
+		height: 18px;
+		float: left;
+		margin-right: 8px;
+		opacity: 0.7;
+	}
+</style>
+</head>
+
+<body>
+<div id="mapid" class="mapclass" style="height: 600px"></div>
+<div id="points"></div>
+<script src="js/leaflet.js"></script>
+<script src="js/leaflet.awesome-markers.js"></script>
+<script src="js/leaflet.extra-markers.min.js"></script>
+<script>
+var mymap = L.map('mapid').setView([25.011, 121.535], 8)
+L.tileLayer(MB_URL, {attribution: MB_ATTR, id: 'mapbox.streets'}).addTo(mymap);
+var hospitals = L.layerGroup();
+var hbuffers = L.layerGroup();
+var legend = L.control({position: 'topright'});
+//mymap.on('zoomend', function() {
+//var currentZoom = mymap.getZoom();
+//hospitals.eachLayer(function (layer) {
+//        //console.log(layer._leaflet_id);
+//    var my_icon2 = layer.options.icon;
+//   var xsize = 46 * (currentZoom / 13)^1.5;
+//    var ysize = 33 * (currentZoom / 13)^1.5;
+//    my_icon2.options.iconSize = [xsize, ysize];
+//   layer.setIcon(my_icon2);
+//});
+//});
+
+function clear(){
+	hbuffers.clearLayers();
+	mymap.eachLayer(function (layer){
+        mymap.removeLayer(layer);
+        L.tileLayer(MB_URL, {attribution: MB_ATTR, id: 'mapbox.streets'}).addTo(mymap);
+});
+	
+}
+
+//var test = L.geoJson();
+function unify(){
+	for(var i = 0; i < hbuffers.getLayers().length; i++)
+	{
+		if( i == 0 ){var unionTemp = hbuffers.getLayers()[i].toGeoJSON();} else{ unionTemp = turf.union(unionTemp, hbuffers.getLayers()[i].toGeoJSON());}
+	}
+	//test.addData(unionTemp, {style: {opacity: 0, fillOpacity: 0.5}}).addTo(mymap);
+	L.geoJson(unionTemp, {style: {opacity: 0, fillOpacity: 0.5}}).addTo(mymap);
+}
+//var cityUnion = unify(hbuffers.getLayers()).addTo(mymap);
+
+mymarker = new L.marker([25.011, 121.535], {icon: L.AwesomeMarkers.icon({icon: 'medkit', prefix: 'fa', markerColor: 'blue'})}); mymap.addLayer(mymarker); mymarker.bindPopup('" + hospitalList[i].name + "');
+//var marker = new L.marker([25.011, 121.535]).addTo(mymap);
+//mymarker = new L.marker([25.011, 121.535]); mymap.addLayer(mymarker); mymarker.bindPopup('" + hospitalList[i].name + "');
+
+//mymarker.on('click', function onClick() { document.getElementById('points').innerHTML = String(mymarker._popup.getContent())});
+
+
+//mymap.on('click',function(e){L.marker(e.latlng).addTo(mymap).bindPopup("SEARCH LOCATION").openPopup();
+//var a=String(e.latlng).split(",");
+//var lat=a[0].split("(");
+//var lon=a[1].split(")");
+//document.getElementById("points").innerHTML = "123123";
+//});
+
+
+</script>
+</body>
+</html>

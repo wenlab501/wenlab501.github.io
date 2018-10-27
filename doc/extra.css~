@@ -1,0 +1,11 @@
+
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
+
+body {
+  font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, 'cwTeXHei', 'cwTeXYen', sans-serif ;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}

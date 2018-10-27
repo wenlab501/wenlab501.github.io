@@ -1,0 +1,1825 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	
+ 	<meta charset="utf-8"/>
+ 	<meta property="og:url" content="http://wenlab.geog.ntu.edu.tw/censusmap/zh/"/>
+ 	<meta property="og:title" content="Taiwan Interactive Census Atlas 1956-2010" />
+ 	<meta property="og:description" content="Explore Taiwan census data spatially and temporally. By Levi Westerveld at National Taiwan University and NTU Geography Lab for Geospatial Computational Science - Summer 2015." />
+ 	<meta property="og:image" content="http://i.imgsafe.org/9f0da62.jpg"/>
+
+ 	<title>Taiwan Interactive Census Atlas 1956-2010</title>
+ 	<!--  	Link to CSS file -->
+ 	<link rel="stylesheet" type="text/css" href="css/layout.min.css" /> 
+ 	<script src="//fast.eager.io/j4LhsRCd2X.js"></script>
+
+ 	<script src="js/website.min.js"></script> 
+
+ </head>
+<body>
+
+		<div id="dialog" title="臺灣人口普查互動地圖&nbsp; 1956 – 2010">
+			<br>
+			<p>歡迎來探索臺灣社會。通過地圖和圖表可以觀察普查數據在空間上與時間上的變化。</p>
+			<p>右側，可以開啓數據層。數據層是按照主題與時期分類。左側，工具列讓您參照地圖圖例、圖表與下載資料。點擊圖標就可以開或關圖表。通過互動地圖我們希望您可以探索臺灣人口普查數據與更深地了解臺灣的人口變化。</p>
+			<p>社會經濟調查及人口資料來自<a href="http://www.stat.gov.tw/mp.asp?mp=4" style="color:blue; text-decoration:none;">臺灣省戶口普查處</a> (<span style="font-size: 13.5px;">1956年, 1966年, 1980年以及1990年)</span> 與<a href="http://www.dgbas.gov.tw/mp.asp?mp=1" style="color:blue; text-decoration:none;">行政院主計處</a> (<span style="font-size: 13.5px;">2000年, 2010年)</span>。</p>
+<!-- 			<p style="font-family:Tahoma; font-size:12px;">Use this <a href="http://wenlab.geog.ntu.edu.tw/censusmap/en/" target="_blank" >link</a> for an English version</p> -->
+			<br>
+			<hr>
+			<br>
+			<div id="share-buttons">
+						<a href="http://wenlab.geog.ntu.edu.tw/">
+							<img src="css/images/wen2.png"/></a>
+						<a href="http://www.geog.ntu.edu.tw/tw/">
+							<img src="css/images/ntu2.png"/></a>
+						<a href="http://www.psc.ntu.edu.tw/">
+							<img src="css/images/pop2.png"/></a>
+						<a href="http://www.facebook.com/sharer.php?u=http://wenlab.geog.ntu.edu.tw/censusmap/zh/">
+							<img src="css/images/facebook2.png" alt="Facebook" /></a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://wenlab.geog.ntu.edu.tw/censusmap/zh/">
+							<img src="css/images/linkedin2.png" alt="LinkedIn" /></a>
+						<a href="https://plus.google.com/share?url=http://wenlab.geog.ntu.edu.tw/censusmap/zh/">
+							<img src="css/images/google2.png" class="google"/></a>
+						<a href="https://twitter.com/share?url=http://wenlab.geog.ntu.edu.tw/censusmap/zh/&amp;name=Taiwan Census Interactive&amp;hashtags=taiwancensusinteractive" target="_blank">
+							<img src="css/images/twitter2.png" alt="Twitter" /></a>
+			</div>
+		</div>
+<div class= "chart" id="chart_pop">
+</div>
+<div class= "chart" id="chart_1956">
+</div>
+<div class= "chart" id="chart_1966">
+</div>
+<div class= "chart" id="chart_1980">
+</div>
+<div class= "chart" id="chart_1990">
+</div>
+<div class= "chart" id="chart_2000">
+</div>
+<div class= "chart" id="chart_2010">
+</div>
+<div class= "chart" id="chart_pie">
+</div>
+<div class= "chart" id="chart_pie2">
+</div>
+<div class= "chart" id="chart_marriage">
+</div>
+<div class= "chart" id="chart_education">
+</div>
+<div class= "chart" id="chart_employement">
+</div>
+<div class= "chart" id="chart_industry">
+</div>
+<div class= "chart" id="chart_occupation">
+</div>
+<div class= "chart" id="chart_residpop">
+</div>
+
+<div id="map">
+</div>
+<div id="sidebar" class="sidebar collapsed">
+
+	<ul class="sidebar-tabs" role="tablist">
+		<li><a href="#legend" role="tab" class="legend"></a></li>
+		<hr style='margin:0px;'/>
+		<li><a href="#graphs" role="tab" class="graph"></a></li>
+		<hr style='margin:0px;'/>
+		<li><a href="#download" role="tab" class="data"></a></li>
+		<hr style='margin:0px;'/>
+		<li><a href="#info" role="tab" class="info"></a></li>
+	</ul>
+
+	<div class="sidebar-content active">
+		<!-- Legend tab -->
+		<div class="sidebar-pane" id="legend">
+		<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;圖例</span></p>
+			<br>
+			<div class="accordion">
+				<h3 class="dropdown"> 行政區 </h3>
+				<div>
+					<p><span class="legend_sub">普查時鄉鎮單位<br>與(2012)差異</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:rgba(0, 0, 0, 0.3); border-color:rgba(0, 0, 255, 1);"></div></th>
+							<th class="legend_des">名稱不同</th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:rgba(0, 0, 0, 0.6); border-color:rgba(0, 0, 255, 1);"></div></th>
+							<td class="legend_des">邊界調整</td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 人口密度 </h3>
+				<div>
+					<p><span class="legend_sub">人／平方公里</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026; opacity:0.7;"></div></th>
+							<th class="legend_des"> > 10000 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.7;"></div></th>
+							<td class="legend_des"> 5000 - 10000 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 1000 - 5000 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 500 - 1000 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 500 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 50 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 族群 </h3>
+				<div>
+					<p><span class="legend_sub">原住民比例 (%)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> > 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 20 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.7;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.7;"></div></th>
+							<th class="legend_des"> < 20 </th>
+						</tr>
+					</table>
+					<p><span class="legend_sub">原住民分布</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ff0000;opacity:0.8;"></div></th>
+							<th class="legend_des"> 泰雅族 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffaa00;opacity:0.8;"></div></th>
+							<td class="legend_des"> 布農族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#4d003d;opacity:0.8;"></div></th>
+							<td class="legend_des"> 曹族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#64664d;opacity:0.8;"></div></th>
+							<td class="legend_des"> 賽夏族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#00ff88;opacity:0.8;"></div></th>
+							<td class="legend_des"> 排灣族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#00ccff;opacity:0.8;"></div></th>
+							<td class="legend_des"> 魯凱族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ff0066;opacity:0.8;"></div></th>
+							<td class="legend_des"> 雅美族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#0066ff;opacity:0.8;"></div></th>
+							<td class="legend_des"> 阿美族</td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ee00ff;opacity:0.8;"></div></th>
+							<td class="legend_des"> 卑南族 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#eeff00;opacity:0.8;"></div></th>
+							<td class="legend_des"> 族系不祥 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 年齡 </h3>
+				<div>
+					<p><span class="legend_sub">幼年 // 14歲一下<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#800026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 50 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> 45 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 45 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 35 - 40 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 35 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 25 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 25 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 10 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">青壯年 // 15－64歲<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#b10026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 80 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 75 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 75 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 65 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 65 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 55 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 55 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 50 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">老年 // 65歲以上<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> > 25 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 25 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 14 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 7 - 14 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.7;"></div></th>
+							<td class="legend_des"> 3 - 7 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.7;"></div></th>
+							<th class="legend_des"> < 3 </th>
+						</tr>
+					</table>
+					<p><span class="legend_sub">扶養比<br>百分比（％)</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#b10026;opacity:0.8;"></div></th>
+							<th class="legend_des">100 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 90 - 100 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 80 - 90 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des">< 40 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">女性育䶖比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des">> 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 55 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 55 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.7;"></div></th>
+							<td class="legend_des"> 45 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.7;"></div></th>
+							<td class="legend_des"> 40 - 45 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.7;"></div></th>
+							<th class="legend_des">< 40 </th>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 性別與婚姻 </h3>
+				<div>
+					<p><span class="legend_sub">性比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#1b7837;opacity:0.8;"></div></th>
+							<th class="legend_des">> 110 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#5aae61;opacity:0.8;"></div></th>
+							<td class="legend_des"> 105 - 110 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#a6dba0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 102.5 - 105 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#d9f0d3;opacity:0.8;"></div></th>
+							<td class="legend_des"> 100 - 102.5 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e7d4e8;opacity:0.8;"></div></th>
+							<td class="legend_des"> 97.5 - 100 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#c2a5cf;opacity:0.8;"></div></th>
+							<td class="legend_des"> 95 - 97.5 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#9970ab;opacity:0.8;"></div></th>
+							<td class="legend_des"> 90 - 95 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#762a83;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 90 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">未婚人口性比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#6e016b;opacity:0.8;"></div></th>
+							<th class="legend_des">> 200 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#88419d;opacity:0.8;"></div></th>
+							<td class="legend_des"> 150 - 200 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c6bb1;opacity:0.8;"></div></th>
+							<td class="legend_des"> 140 - 150 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c96c6;opacity:0.8;"></div></th>
+							<td class="legend_des"> 130 - 140 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#9ebcda;opacity:0.8;"></div></th>
+							<td class="legend_des"> 120 - 130 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bfd3e6;opacity:0.8;"></div></th>
+							<td class="legend_des"> 110 - 120 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#edf8fb;opacity:0.8;"></div></th>
+							<td class="legend_des"> 100 - 110 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e7d4e8;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 100 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">已婚人口喪偶比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#045a8d;opacity:0.8;"></div></th>
+							<th class="legend_des">> 20 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#2b8cbe;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#74a9cf;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bdc9e1;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f1eef6;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">已婚人口離異比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#0570b0;opacity:0.8;"></div></th>
+							<th class="legend_des">> 10 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#74a9cf;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bdc9e1;opacity:0.8;"></div></th>
+							<td class="legend_des"> 2.5 - 5 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f1eef6;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 2.5 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 教育 </h3>
+				<div>
+					<p><span class="legend_sub">不識字率<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 70 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">小學以下學歷比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 70 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">初中學歷比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#993404;opacity:0.8;"></div></th>
+							<th class="legend_des">> 30 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#d95f0e;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">高中學歷比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 40 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 40 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">大專以上學歷比例<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#8c2d04;opacity:0.8;"></div></th>
+							<th class="legend_des">> 50 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#cc4c02;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ec7014;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fe9929;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fec44f;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fee391;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffd4;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 勞動力 </h3>
+				<div>
+					<p><span class="legend_sub">勞動參與率<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 80 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 40 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">男女性勞動參與率<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#800026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 90 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<td class="legend_des"> 80 - 90 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 70 - 80 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+							<td class="legend_des"> 60 - 70 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 50 - 60 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 40 - 50 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+							<td class="legend_des"> 30 - 40 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+							<td class="legend_des"> 20 - 30 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 20 </td>
+						</tr>
+					</table>
+					<p><span class="legend_sub">失業率<br>百分比（％）</span></p>
+					<table>
+						<tr>
+							<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+							<th class="legend_des">> 20 </th>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+							<td class="legend_des"> 15 - 20 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 10 - 15 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+							<td class="legend_des"> 5 - 10 </td>
+						</tr>
+						<tr>
+							<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+							<td class="legend_des"> < 5 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 職業 </h3>
+				<div>
+					<p><span class="legend_sub">專門技術人員比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 15 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 15 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 2.5 - 5 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 2.5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">行政主管比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<th class="legend_des">> 5 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 2.5 - 5 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 2.5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">監督佐理人員比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 40 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 30 - 40 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">買賣工作人員比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 30 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">服務工作人員比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 30 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#f03b20;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fecc5c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffb2;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">農林漁牧工作者比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#32000f;opacity:0.8;"></div></th>
+								<th class="legend_des">> 90 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#800026;opacity:0.8;"></div></th>
+								<td class="legend_des"> 80 - 90 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#bd0026;opacity:0.8;"></div></th>
+								<td class="legend_des"> 70 - 80 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 60 - 70 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+								<td class="legend_des"> 50 - 60 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 40 - 50 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 30 - 40 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 10 </td>
+							</tr>
+						</table>
+						<p><span class="legend_sub">勞工比例<br>百分比（％）</span></p>
+						<table>
+							<tr>
+								<th><div class="legend_div" style="background-color:#b10026;opacity:0.8;"></div></th>
+								<th class="legend_des">> 60 </th>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#e31a1c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 50 - 60 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fc4e2a;opacity:0.8;"></div></th>
+								<td class="legend_des"> 40 - 50 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fd8d3c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 30 - 40 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#feb24c;opacity:0.8;"></div></th>
+								<td class="legend_des"> 20 - 30 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#fed976;opacity:0.8;"></div></th>
+								<td class="legend_des"> 10 - 20 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffeda0;opacity:0.8;"></div></th>
+								<td class="legend_des"> 5 - 10 </td>
+							</tr>
+							<tr>
+								<th><div class="legend_div" style="background-color:#ffffcc;opacity:0.8;"></div></th>
+								<td class="legend_des"> < 5 </td>
+							</tr>
+						</table>
+				</div>
+			</div>
+		</div>
+		<!-- Graphs tab -->
+		<div class="sidebar-pane" id="graphs">
+		<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;圖表</span></p>
+			<br>
+			<hr>
+			<p id="info">點擊圖表的圖標<br>來開關圖表。</p>
+			<hr>
+			<div class="accordion">
+				<h3 class="dropdown"> 人口密度 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class="click_icon" id="click_pop"></div></td>
+						<th class="chart_name" >人口變化</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 族群 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_pie"></div></td>
+						<th class="chart_name" >族群 (1956)</th>
+					</tr>
+					</table>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_pie2"></div></td>
+						<th class="chart_name" >族群 (2000)</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 年齡 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_1956"></div></td>
+						<th class="chart_name" >年齡 (1956)</th>
+					</tr>
+					</table>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_1966"></div></td>
+						<th class="chart_name" >年齡 (1966)</th>
+					</tr>
+					</table>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_1980"></div></td>
+						<th class="chart_name" >年齡 (1980)</th>
+					</tr>
+					</table>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_1990"></div></td>
+						<th class="chart_name" >年齡 (1990)</th>
+					</tr>
+					</table>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_2000"></div></td>
+						<th class="chart_name" >年齡 (2000)</th>
+					</tr>
+					</table>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_2010"></div></td>
+						<th class="chart_name" >年齡 (2010)</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 性別與婚姻 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_marriage"></div></td>
+						<th class="chart_name" >婚姻狀態變遷</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 教育 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_education"></div></td>
+						<th class="chart_name" >教育程度變遷</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 勞動力 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_employement"></div></td>
+						<th class="chart_name" >勞動參與率變遷</th>
+					</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 職業 </h3>
+				<div>
+					<table>
+					<tr>
+						<td><div class = "click_icon" id="click_occupation"></div></td>
+						<th class="chart_name" >職業結構變遷</th>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- Download tab -->
+		<div class="sidebar-pane" id="download">
+		<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;資料</span></p>
+			<br>
+			<div class="accordion">
+				<h3 class="dropdown"> 人口密度 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1956_pop_density.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1956 人口密度 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 人口密度 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 人口密度 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 人口密度 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 人口密度 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_pop_density.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 人口密度 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 族群 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1956_indigenous_ratio.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1956 原住民比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2000_indigenous_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 原住民比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_atayal.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 泰雅族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_atayal.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 泰雅族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_bunun.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 布農族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_bunun.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 布農族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_tsou.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 鄒族 (曹族) </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_tsou.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 鄒族 (曹族) </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_saisiyat.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 賽夏族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_saisiyat.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 賽夏族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_paiwan.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 排灣族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_paiwan.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 排灣族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_rukai.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 魯凱族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_rukai.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 魯凱族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_yami.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 雅美族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_yami.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 雅美族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_amis.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 阿美族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_amis.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 阿美族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1956_puyuma.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1956 卑南族 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_puyuma.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 卑南族 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 年齡 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_young.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 幼年人比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_young.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 幼年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_young.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 幼年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_young.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 幼年人比例</th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_young.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 幼年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_adult.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 青壯年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_adult.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1980 青壯年人比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1990_adult.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 青壯年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_adult.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 青壯年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_adult.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2010 青壯年人比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 老年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 老年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 老年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 老年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_old.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 老年人比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 扶養比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 扶養比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 扶養比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_work.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 扶養比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 女性育齡比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 女性育齡比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 女性育齡比 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_women.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 女性育齡比 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 性別與婚姻 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1956_ratio.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1956 性比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 性比例</td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 性比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_ratio.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 性比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2000_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 性比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2010_ratio.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 性比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_unmmaried.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 未婚人口性比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_unmarried.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 未婚人口性比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_unmarried.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 未婚人口性比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_unmarried.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 未婚人口性比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 已婚人口喪偶比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 已婚人口喪偶比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 已婚人口喪偶比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_widow.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 已婚人口喪偶比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 已婚人口離異比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 已婚人口離異比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 已婚人口離異比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_divorced.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 已婚人口離異比例 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 教育 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_illiterate.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 不識字率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_illiterate.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 不識字率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_illiterate.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 不識字率 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2000_illiterate.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2000 不識字率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_xiao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 小學以下學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_xiao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 小學以下學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_xiao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 小學以下學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_xiao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 小學以下學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_xiao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 小學以下學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_chu.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 初中學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_chu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 初中學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_chu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 初中學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_chu.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 初中學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_chu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 初中學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_gao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 高中學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_gao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 高中學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_gao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 高中學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_gao.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 高中學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_gao.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 高中學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_da.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 大專以上學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_da.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 大專以上學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_da.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 大專以上學歷比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/2000_da.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 2000 大專以上學歷比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/2010_da.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 2010 大專以上學歷比例 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 勞動力 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_labor.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 勞動參與率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_labor.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 勞動參與率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_labor.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 勞動參與率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_mlab.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 男性勞動參與率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_mlab.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 男性勞動參與率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_mlab.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 男性勞動參與率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_wlab.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 女性勞動參與率 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_wlab.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1980 女性勞動參與率 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1990_wlab.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 女性勞動參與率 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_emplo.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 失業率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_emplo.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 失業率 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_emplo.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 失業率 </td>
+						</tr>
+					</table>
+				</div>
+				<h3 class="dropdown"> 職業 </h3>
+				<div>
+					<table>
+						<tr>
+							<th><a href="download/1966_spec.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 專門技術人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_spec.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 專門技術人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_spec.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 專門技術人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_mana.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 行政主管比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_mana.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 行政主管比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_mana.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 行政主管比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_suke.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1966 監督佐理人員比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1980_suke.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1980 監督佐理人員比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1990_suke.csv"><div class="download_div"></div></th></a>
+							<th class="download_txt"> 1990 監督佐理人員比例 </th>
+						</tr>
+						<tr>
+							<th><a href="download/1966_sale.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 買賣工作人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_sale.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 買賣工作人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_sale.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 買賣工作人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_fuwu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 服務工作人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_fuwu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 服務工作人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_fuwu.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 服務工作人員比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_farm.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 農林漁牧工作者比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_farm.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 農林漁牧工作者比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_farm.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 農林漁牧工作者比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1966_trav.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1966 勞工比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1980_trav.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1980 勞工比例 </td>
+						</tr>
+						<tr>
+							<th><a href="download/1990_trav.csv"><div class="download_div"></div></th>
+							<td class="download_txt"> 1990 勞工比例 </td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- Graphs tab -->
+		<div class="sidebar-pane" id="info">
+			<br>
+			<p><span class="pannel_title">&nbsp;&nbsp;&nbsp;&nbsp;信息</span></p>
+			<br>
+				<div id="info_content">
+					<p>歡迎來探索臺灣社會。通過地圖和圖表可以觀察普查數據在空間上與時間上的變化。</p>
+					<p>右側，可以開啓數據層。數據層是按照主題與時期分類。左側，工具列讓您參照地圖圖例、圖表與下載資料。點擊圖標就可以開或關圖表。通過互動地圖我們希望您可以探索臺灣人口普查數據與更深地了解臺灣的人口變化。</p>
+					<p>社會經濟調查及人口資料來自<a href="http://www.stat.gov.tw/mp.asp?mp=4" style="color:blue; text-decoration:none;">臺灣省戶口普查處</a> (<span style="font-size: 13.5px;">1956年, 1966年, 1980年以及1990年)</span> 與<a href="http://www.dgbas.gov.tw/mp.asp?mp=1" style="color:blue; text-decoration:none;">行政院主計處</a> (<span style="font-size: 13.5px;">2000年, 2010年)</span>。</p>
+					
+					<p style="font-size:12px">Project by <a href="mailto:levi.westerveld@gmail.com" style="color:blue; text-decoration:none;">Levi Westerveld</a> at NTU Department of Geography under the supervision of <a href="mailto:wenthung@gmail.com" style="color:blue; text-decoration:none;"> Wen Tzai-Hung</a>, Associate Professor of Geography at NTU. </p> 
+				</div>
+		</div>
+	</div>
+
+
+
+
+	<script>
+		var map = L.map('map', {
+			center: [23.60, 121.30],
+			zoom: 8,
+			zoomControl: false,
+			layers: [aerial],
+			attributionControl:false,
+		});
+		var baseMaps = [
+		{
+			groupName : "底圖",
+			expanded : false,
+			layers    : {
+				"衛星圖像" :  aerial,
+				"灰階地圖"  :  aerial2
+			}
+		}
+		];
+		var overlays = [
+		{
+			groupName : "行政區",
+			expanded  : false,
+			layers    : {
+				"1956年9月": town_1956,
+				"1966年12月": town_1966,
+				"1980年12月": town_1980,
+				"1990年12月": town_1990,
+				"2000年12月": town_2000,
+				"2010年12月": town_2010
+			}
+		},
+		{
+			groupName : "人口分布",
+			expanded  : true,
+			layers    : {
+				"1956  人口密度": pop_den_1956,
+				"1966  人口密度": pop_den_1966,
+				"1980  人口密度": pop_den_1980,
+				"1990  人口密度": pop_den_1990,
+				"2000  人口密度": pop_den_2000,
+				"2010  人口密度": pop_den_2010
+			}
+		},
+		{
+			groupName : "族群",
+			expanded  : false,
+			layers    : {
+				"1956  原住民比例": total_1956,
+				"2000  原住民比例": total_2000,
+				"1956  泰雅族": atayal_1956,
+				"2000  泰雅族": atayal_2000,
+				"1956  布農族": bunun_1956,
+				"2000  布農族": bunun_2000,
+				"1956  鄒族 (曹族)": tsou_1956,
+				"2000  鄒族 (曹族)": tsou_2000,
+				"1956  賽夏族": saisiyat_1956,
+				"2000  賽夏族": saisiyat_2000,
+				"1956  排灣族": paiwan_1956,
+				"2000  排灣族": paiwan_2000,
+				"1956  魯凱族": rukai_1956,
+				"2000  魯凱族": rukai_2000,
+				"1956  雅美族": yami_1956,
+				"2000  雅美族": yami_2000,
+				"1956  阿美族": amis_1956,
+				"2000  阿美族": amis_2000,
+				"1956  卑南族": puyuma_1956,
+				"2000  卑南族": puyuma_2000
+			}
+		},
+		{
+			groupName : "年齡",
+			expanded  : false,
+			layers    : {
+				"1966  幼年人比例": young_1966,
+				"1980  幼年人比例": young_1980,
+				"1990  幼年人比例": young_1990,
+				"2000  幼年人比例": young_2000,
+				"2010  幼年人比例": young_2010,
+				"1966  青壯年人比例": adult_1966,
+				"1980  青壯年人比例": adult_1980,
+				"1990  青壯年人比例": adult_1990,
+				"2000  青壯年人比例": adult_2000,
+				"2010  青壯年人比例": adult_2010,
+				"1966  老年人比例": old_1966,
+				"1980  老年人比例": old_1980,
+				"1990  老年人比例": old_1990,
+				"2000  老年人比例": old_2000,
+				"2010  老年人比例": old_2010,
+				"1966  扶養比": work_1966,
+				"1980  扶養比": work_1980,
+				"1990  扶養比": work_1990,
+				"2000  扶養比": work_2000,
+				"1966  女性育齡比": women_1966,
+				"1980  女性育齡比": women_1980,
+				"1990  女性育齡比": women_1990,
+				"2000  女性育齡比": women_2000
+			}
+		},
+		{
+			groupName : "性別與婚姻",
+			expanded  : false,
+			layers    : {
+				"1956  性比例": ratio_1956,
+				"1966  性比例": ratio_1966,
+				"1980  性比例": ratio_1980,
+				"1990  性比例": ratio_1990,
+				"2000  性比例": ratio_2000,
+				"2010  性比例": ratio_2010,
+				"1966  未婚人口性比例": unmarried_1966,
+				"1980  未婚人口性比例": unmarried_1980,
+				"1990  未婚人口性比例": unmarried_1990,
+				"2000  未婚人口性比例": unmarried_2000,
+				"1966  已婚人口喪偶比例": widow_1966,
+				"1980  已婚人口喪偶比例": widow_1980,
+				"1990  已婚人口喪偶比例": widow_1990,
+				"2000  已婚人口喪偶比例": widow_2000,
+				"1966  已婚人口離異比例": divorced_1966,
+				"1980  已婚人口離異比例": divorced_1980,
+				"1990  已婚人口離異比例": divorced_1990,
+				"2000  已婚人口離異比例": divorced_2000
+			}
+		},
+		{
+			groupName : "教育",
+			expanded  : false,
+			layers    : {
+				"1966  不識字率": illiterate_1966,
+				"1980  不識字率": illiterate_1980,
+				"1990  不識字率": illiterate_1990,
+				"2000  不識字率": illiterate_2000,
+				"1966  小學以下學歷比例": xiao_1966,
+				"1980  小學以下學歷比例": xiao_1980,
+				"1990  小學以下學歷比例": xiao_1990,
+				"2000  小學以下學歷比例": xiao_2000,
+				"2010  小學以下學歷比例": xiao_2010,
+				"1966  初中學歷比例": chu_1966,
+				"1980  初中學歷比例": chu_1980,
+				"1990  初中學歷比例": chu_1990,
+				"2000  初中學歷比例": chu_2000,
+				"2010  初中學歷比例": chu_2010,
+				"1966  高中學歷比例": gao_1966,
+				"1980  高中學歷比例": gao_1980,
+				"1990  高中學歷比例": gao_1990,
+				"2000  高中學歷比例": gao_2000,
+				"2010  高中學歷比例": gao_2010,
+				"1966  大專以上學歷比例": da_1966,
+				"1980  大專以上學歷比例": da_1980,
+				"1990  大專以上學歷比例": da_1990,
+				"2000  大專以上學歷比例": da_2000,
+				"2010  大專以上學歷比例": da_2010
+			}
+		},
+		{
+			groupName : "勞動力",
+			expanded  : false,
+			layers    : {
+				"1966 勞動參與率": labor_1966,
+				"1980 勞動參與率": labor_1980,
+				"1990 勞動參與率": labor_1990,
+				"1966 男性勞動參與率": mlab_1966,
+				"1980 男性勞動參與率": mlab_1980,
+				"1990 男性勞動參與率": mlab_1990,
+				"1966 女性勞動參與率": wlab_1966,
+				"1980 女性勞動參與率": wlab_1980,
+				"1990 女性勞動參與率": wlab_1990,
+				"1966 失業率": emplo_1966,
+				"1980 失業率": emplo_1980,
+				"1990 失業率": emplo_1990
+			}
+		},
+		{
+			groupName : "職業",
+			expanded  : false,
+			layers    : {
+				"1966  專門技術人員比例": spec_1966,
+				"1980  專門技術人員比例": spec_1980,
+				"1990  專門技術人員比例": spec_1990,
+				"1966  行政主管比例": mana_1966,
+				"1980  行政主管比例": mana_1980,
+				"1990  行政主管比例": mana_1990,
+				"1966  監督佐理人員比例": suke_1966,
+				"1980  監督佐理人員比例": suke_1980,
+				"1990  監督佐理人員比例": suke_1990,
+				"1966  買賣工作人員比例": sale_1966,
+				"1980  買賣工作人員比例": sale_1980,
+				"1990  買賣工作人員比例": sale_1990,
+				"1966  服務工作人員比例": fuwu_1966,
+				"1980  服務工作人員比例": fuwu_1980,
+				"1990  服務工作人員比例": fuwu_1990,
+				"1966  農林漁牧工作者比例": farm_1966,
+				"1980  農林漁牧工作者比例": farm_1980,
+				"1990  農林漁牧工作者比例": farm_1990,
+				"1966  勞工比例": trav_1966,
+				"1980  勞工比例": trav_1980,
+				"1990  勞工比例": trav_1990
+			}
+		},
+		];
+		var options = {
+			container_width     : "200px",
+			group_maxHeight     : "150px",
+			exclusive  			: false
+		};
+		var control = L.Control.styledLayerControl(baseMaps, overlays, options);
+		map.addControl(control);
+		var sidebar = L.control.sidebar('sidebar').addTo(map);
+		L.control.scale({maxWidth:250, metric:true, imperial:false, position:'bottomleft' }).addTo(map);
+		L.control.attribution({prefix:false}).addTo(map);
+
+	</script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51280335-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

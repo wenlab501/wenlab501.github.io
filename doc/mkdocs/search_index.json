@@ -1,0 +1,264 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Wenlab server \u4f7f\u7528\u8aaa\u660e\n\n\n\u7814\u7a76\u5ba4\u6709\u4e00\u81fa server\uff0c\u7232\u4e86\u8b93\u7814\u7a76\u5ba4\u7684\u5927\u5bb6\u53ef\u4ee5\u6709\u4e00\u500b\u53ef\u4ee5\u5728\u96f2\u7aef\u9032\u884c\u8cc7\u6599\u5206\u6790\u7684\u74b0\u5883\uff0c\u4ee5\u53ca\u4f7f\u7528\u4e00\u4e9b\u7db2\u8def\u670d\u52d9\uff0c\u800c\u88dd\u4e86\u4e00\u4e9b\u53ef\u4ee5\u900f\u904e\u700f\u89bd\u5668\u4f7f\u7528\u7684\u4f3a\u670d\u5668\u670d\u52d9\u3002\n\n\nRstudio server\n\n\nRstudio server \u662f\u8b93\u5927\u5bb6\u53ef\u4ee5\u76f4\u63a5\u5728\u700f\u89bd\u5668\u4e0a\u9032\u884c R \u7684\u8cc7\u6599\u5206\u6790\uff0c\u6216\u662f\u76f4\u63a5\u4fee\u6539 shiny app \u7684\u7a0b\u5f0f\u3002\n\n\nJupyterhub\n\n\n\u662f\u4e00\u500b\u7531 ipython \u767c\u5c55\u800c\u8f49\u751f\u6210\u7684\u8cc7\u6599\u5206\u6790\u5e73\u81fa\u3002\n\n\nShiny server\n\n\n\u662f\u4e00\u500b host shiny app \u7684\u670d\u52d9\u3002\n\n\nFTP\n\n\n\u8b93\u5927\u5bb6\u53ef\u4ee5\u5c07\u8cc7\u6599\u4e0a\u50b3\uff0c\u5c07\u7d50\u679c\u4e0b\u8f09\u7684\u7ba1\u9053\n\n\n\u8cc7\u6599\u5eab\n\n\n\u95dc\u806f\u5f0f\u8cc7\u6599\u5eab\n\n\n\u5716\u8cc7\u670d\u52d9\n\n\nGeoserver/mapserver \u985e\uff0c\u8b93\u5927\u5bb6\u53ef\u4ee5\u76f4\u63a5\u5728 Rstudio-server/jupyterhub \u4e0a\u7528\u8cc7\u6599\uff0c\u6216\u662f\u5728\u55ae\u6a5f\u7248\u7684 ArcGIS/Qgis \u53eb\u5716\u8cc7\u3002", 
+            "title": "\u9996\u9801"
+        }, 
+        {
+            "location": "/#wenlab-server", 
+            "text": "\u7814\u7a76\u5ba4\u6709\u4e00\u81fa server\uff0c\u7232\u4e86\u8b93\u7814\u7a76\u5ba4\u7684\u5927\u5bb6\u53ef\u4ee5\u6709\u4e00\u500b\u53ef\u4ee5\u5728\u96f2\u7aef\u9032\u884c\u8cc7\u6599\u5206\u6790\u7684\u74b0\u5883\uff0c\u4ee5\u53ca\u4f7f\u7528\u4e00\u4e9b\u7db2\u8def\u670d\u52d9\uff0c\u800c\u88dd\u4e86\u4e00\u4e9b\u53ef\u4ee5\u900f\u904e\u700f\u89bd\u5668\u4f7f\u7528\u7684\u4f3a\u670d\u5668\u670d\u52d9\u3002", 
+            "title": "Wenlab server \u4f7f\u7528\u8aaa\u660e"
+        }, 
+        {
+            "location": "/#rstudio-server", 
+            "text": "Rstudio server \u662f\u8b93\u5927\u5bb6\u53ef\u4ee5\u76f4\u63a5\u5728\u700f\u89bd\u5668\u4e0a\u9032\u884c R \u7684\u8cc7\u6599\u5206\u6790\uff0c\u6216\u662f\u76f4\u63a5\u4fee\u6539 shiny app \u7684\u7a0b\u5f0f\u3002", 
+            "title": "Rstudio server"
+        }, 
+        {
+            "location": "/#jupyterhub", 
+            "text": "\u662f\u4e00\u500b\u7531 ipython \u767c\u5c55\u800c\u8f49\u751f\u6210\u7684\u8cc7\u6599\u5206\u6790\u5e73\u81fa\u3002", 
+            "title": "Jupyterhub"
+        }, 
+        {
+            "location": "/#shiny-server", 
+            "text": "\u662f\u4e00\u500b host shiny app \u7684\u670d\u52d9\u3002", 
+            "title": "Shiny server"
+        }, 
+        {
+            "location": "/#ftp", 
+            "text": "\u8b93\u5927\u5bb6\u53ef\u4ee5\u5c07\u8cc7\u6599\u4e0a\u50b3\uff0c\u5c07\u7d50\u679c\u4e0b\u8f09\u7684\u7ba1\u9053", 
+            "title": "FTP"
+        }, 
+        {
+            "location": "/#_1", 
+            "text": "\u95dc\u806f\u5f0f\u8cc7\u6599\u5eab", 
+            "title": "\u8cc7\u6599\u5eab"
+        }, 
+        {
+            "location": "/#_2", 
+            "text": "Geoserver/mapserver \u985e\uff0c\u8b93\u5927\u5bb6\u53ef\u4ee5\u76f4\u63a5\u5728 Rstudio-server/jupyterhub \u4e0a\u7528\u8cc7\u6599\uff0c\u6216\u662f\u5728\u55ae\u6a5f\u7248\u7684 ArcGIS/Qgis \u53eb\u5716\u8cc7\u3002", 
+            "title": "\u5716\u8cc7\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/rstudioserver/", 
+            "text": "Rstudio Server\n\n\n\u670d\u52d9\n\n\nRstudio server \u662f rstudio \u7684\u96f2\u7aef\u7248\u3002\u5728\u700f\u89bd\u5668\u4e0a\u5c31\u80fd\u91dd\u5c0d\u5728\u96f2\u7aef\u7684\u8cc7\u6599\u9032\u884c\u8a08\u7b97\u5206\u6790\uff0c\u4ee5\u53ca\u8cc7\u6599\u8655\u7406\u3002\n\n\n\u64cd\u4f5c\n\n\n\n\n\u9023\u4e0a http://wenlab.geog.ntu.edu.tw:18000\n\n\n\u4ee5\u81ea\u5df1\u7684\u5e33\u865f\u5bc6\u78bc\u767b\u9304\uff0c\u82e5\u6709\u554f\u984c\u8acb\u806f\u7d61\u7814\u7a76\u5ba4\u76f8\u95dc\u4eba\u54e1\n\n\n\u767b\u9304\u5f8c\u7684\u754c\u9762\u8207\u55ae\u6a5f\u7248 rstudio \u57fa\u672c\u4e0a\u4e00\u6a23\n\n\n\u7406\u8ad6\u4e0a\u53ef\u4ee5\u5b89\u88dd package\uff0c\u4f46\u53ea\u80fd\u5728\u81ea\u5df1\u7684\u5e33\u865f\u61c9\u7528\uff0c\u5728 shiny app \u7121\u6cd5\u61c9\u7528\u3002\u82e5\u6709\u9700\u8981\u5b89\u88dd package\uff0c\u4e5f\u540c\u6a23\u8acb\u806f\u7d61\u7814\u7a76\u5ba4\n\n\n\n\n\u64cd\u4f5c\u754c\u9762\u5716\n\n\n\u9019\u662f\u4e3b\u756b\u9762\n\n\n\n\u9019\u662f\u6253\u958b\u820a\u6587\u4ef6\u7684\u756b\u9762\uff0c\u8cc7\u6599\u593e\u7d50\u69cb\u5982\u5716", 
+            "title": "Rstudio server"
+        }, 
+        {
+            "location": "/basic/rstudioserver/#rstudio-server", 
+            "text": "", 
+            "title": "Rstudio Server"
+        }, 
+        {
+            "location": "/basic/rstudioserver/#_1", 
+            "text": "Rstudio server \u662f rstudio \u7684\u96f2\u7aef\u7248\u3002\u5728\u700f\u89bd\u5668\u4e0a\u5c31\u80fd\u91dd\u5c0d\u5728\u96f2\u7aef\u7684\u8cc7\u6599\u9032\u884c\u8a08\u7b97\u5206\u6790\uff0c\u4ee5\u53ca\u8cc7\u6599\u8655\u7406\u3002", 
+            "title": "\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/rstudioserver/#_2", 
+            "text": "\u9023\u4e0a http://wenlab.geog.ntu.edu.tw:18000  \u4ee5\u81ea\u5df1\u7684\u5e33\u865f\u5bc6\u78bc\u767b\u9304\uff0c\u82e5\u6709\u554f\u984c\u8acb\u806f\u7d61\u7814\u7a76\u5ba4\u76f8\u95dc\u4eba\u54e1  \u767b\u9304\u5f8c\u7684\u754c\u9762\u8207\u55ae\u6a5f\u7248 rstudio \u57fa\u672c\u4e0a\u4e00\u6a23  \u7406\u8ad6\u4e0a\u53ef\u4ee5\u5b89\u88dd package\uff0c\u4f46\u53ea\u80fd\u5728\u81ea\u5df1\u7684\u5e33\u865f\u61c9\u7528\uff0c\u5728 shiny app \u7121\u6cd5\u61c9\u7528\u3002\u82e5\u6709\u9700\u8981\u5b89\u88dd package\uff0c\u4e5f\u540c\u6a23\u8acb\u806f\u7d61\u7814\u7a76\u5ba4", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/basic/rstudioserver/#_3", 
+            "text": "\u9019\u662f\u4e3b\u756b\u9762  \u9019\u662f\u6253\u958b\u820a\u6587\u4ef6\u7684\u756b\u9762\uff0c\u8cc7\u6599\u593e\u7d50\u69cb\u5982\u5716", 
+            "title": "\u64cd\u4f5c\u754c\u9762\u5716"
+        }, 
+        {
+            "location": "/basic/jupyterhub/", 
+            "text": "Jupyterhub\n\n\n\u670d\u52d9\n\n\nJupyterhub(Jupyter, ipython) \u662f\u4e00\u500b\u8cc7\u6599\u5206\u6790\u5e73\u81fa\u3002\u5176\u6253\u958b\u4e00\u9801\u9801\u7684\u9801\u9762\uff0c\u5373\u662f notebook\u3002Notebook \u53ef\u4ee5\u662f R \u6216 python2/python3 \u7684\u7a0b\u5f0f\u3002\n\n\n\u64cd\u4f5c\n\n\n\u66ab\u4e0d\u8aaa\u660e\n\n\n\u64cd\u4f5c\u754c\u9762\u5716\n\n\n\u767b\u9304\u5f8c\u756b\u9762\uff0c\u662f\u6587\u4ef6\u8207\u8cc7\u6599\u593e\u7684\u7d50\u69cb\uff1a\n\n\n\n\u6253\u958b\u6216\u65b0\u589e\u4e00\u500b notebook(.ipynb) \u6a94\u4e4b\u5f8c\uff0c\u5982\u4e0b\u5716\u662f R \u7684 notebook\uff1a", 
+            "title": "Jupyterhub"
+        }, 
+        {
+            "location": "/basic/jupyterhub/#jupyterhub", 
+            "text": "", 
+            "title": "Jupyterhub"
+        }, 
+        {
+            "location": "/basic/jupyterhub/#_1", 
+            "text": "Jupyterhub(Jupyter, ipython) \u662f\u4e00\u500b\u8cc7\u6599\u5206\u6790\u5e73\u81fa\u3002\u5176\u6253\u958b\u4e00\u9801\u9801\u7684\u9801\u9762\uff0c\u5373\u662f notebook\u3002Notebook \u53ef\u4ee5\u662f R \u6216 python2/python3 \u7684\u7a0b\u5f0f\u3002", 
+            "title": "\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/jupyterhub/#_2", 
+            "text": "\u66ab\u4e0d\u8aaa\u660e", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/basic/jupyterhub/#_3", 
+            "text": "\u767b\u9304\u5f8c\u756b\u9762\uff0c\u662f\u6587\u4ef6\u8207\u8cc7\u6599\u593e\u7684\u7d50\u69cb\uff1a  \u6253\u958b\u6216\u65b0\u589e\u4e00\u500b notebook(.ipynb) \u6a94\u4e4b\u5f8c\uff0c\u5982\u4e0b\u5716\u662f R \u7684 notebook\uff1a", 
+            "title": "\u64cd\u4f5c\u754c\u9762\u5716"
+        }, 
+        {
+            "location": "/basic/shinyserver/", 
+            "text": "shiny server\n\n\n\u670d\u52d9\n\n\nShiny server \u662f\u4f5c\u7232\u5c55\u793a Shiny app \u670d\u52d9\u7684\u5e73\u81fa\u3002Shiny app \u662f\u5728 R \u7684\u74b0\u5883\u4e0b\uff0c\u900f\u904e\u5beb server.R/UI.R \u6216 shiny.rmd \uff0c\u88fd\u4f5c\u7db2\u9801\u7684\u4f7f\u7528\u8005\u754c\u9762\uff0c\u4f5c\u7232\u8207\u8cc7\u6599\u3001\u5206\u6790\u6a21\u5f0f\u7684\u4e92\u52d5\u754c\u9762\u3002 \n\n\n\u64cd\u4f5c\n\n\n\u66ab\u4e0d\u8aaa\u660e\n\n\n\u64cd\u4f5c\u754c\u9762\u5716\n\n\n\u4ee5\u4e0b\u662f\u4e00\u500b shiny app", 
+            "title": "Shiny server"
+        }, 
+        {
+            "location": "/basic/shinyserver/#shiny-server", 
+            "text": "", 
+            "title": "shiny server"
+        }, 
+        {
+            "location": "/basic/shinyserver/#_1", 
+            "text": "Shiny server \u662f\u4f5c\u7232\u5c55\u793a Shiny app \u670d\u52d9\u7684\u5e73\u81fa\u3002Shiny app \u662f\u5728 R \u7684\u74b0\u5883\u4e0b\uff0c\u900f\u904e\u5beb server.R/UI.R \u6216 shiny.rmd \uff0c\u88fd\u4f5c\u7db2\u9801\u7684\u4f7f\u7528\u8005\u754c\u9762\uff0c\u4f5c\u7232\u8207\u8cc7\u6599\u3001\u5206\u6790\u6a21\u5f0f\u7684\u4e92\u52d5\u754c\u9762\u3002", 
+            "title": "\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/shinyserver/#_2", 
+            "text": "\u66ab\u4e0d\u8aaa\u660e", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/basic/shinyserver/#_3", 
+            "text": "\u4ee5\u4e0b\u662f\u4e00\u500b shiny app", 
+            "title": "\u64cd\u4f5c\u754c\u9762\u5716"
+        }, 
+        {
+            "location": "/basic/vsftpd/", 
+            "text": "vsftpd\n\n\n\u670d\u52d9\n\n\n\u9019\u81fa Server \u7684 FTP\u3002\n\n\n\u64cd\u4f5c\n\n\n\n\n\u5b89\u88dd\u4e26\u6253\u958b filezilla client / netdrive \u4e4b\u985e\u9023\u63a5 ftp \u8edf\u9ad4\n\n\nHost \u8a2d\u5b9a\u7232 wenlab.geog.ntu.edu.tw \u6216 140.112.64.62\n\n\nprotocol: ftp-file transfer protocol\n\n\nencryption: Use plain FTP\n\n\nLogon type: Normal\n\n\nuser/password \u8acb\u7528\u81ea\u5df1\u7684\u5e33\u865f\u5bc6\u78bc\uff1b meeting \u8207\u516c\u7528 FTP\u8cc7\u6599\u5e33\u865f\u5bc6\u78bc\u8acb\u6070\u7814\u7a76\u5ba4\n\n\n\n\n\u64cd\u4f5c\u754c\u9762\u5716\n\n\nFilezilla \u8a2d\u5b9a\u756b\u9762\n\n\n\nFilezilla \u61c9\u7528\u756b\u9762\uff0c\u5de6\u908a\u662f\u672c\u6a5f\u7aef\u8cc7\u6599\u593e\uff0c\u53f3\u908a\u662fserver\u7aef\u8cc7\u6599\u593e", 
+            "title": "FTP"
+        }, 
+        {
+            "location": "/basic/vsftpd/#vsftpd", 
+            "text": "", 
+            "title": "vsftpd"
+        }, 
+        {
+            "location": "/basic/vsftpd/#_1", 
+            "text": "\u9019\u81fa Server \u7684 FTP\u3002", 
+            "title": "\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/vsftpd/#_2", 
+            "text": "\u5b89\u88dd\u4e26\u6253\u958b filezilla client / netdrive \u4e4b\u985e\u9023\u63a5 ftp \u8edf\u9ad4  Host \u8a2d\u5b9a\u7232 wenlab.geog.ntu.edu.tw \u6216 140.112.64.62  protocol: ftp-file transfer protocol  encryption: Use plain FTP  Logon type: Normal  user/password \u8acb\u7528\u81ea\u5df1\u7684\u5e33\u865f\u5bc6\u78bc\uff1b meeting \u8207\u516c\u7528 FTP\u8cc7\u6599\u5e33\u865f\u5bc6\u78bc\u8acb\u6070\u7814\u7a76\u5ba4", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/basic/vsftpd/#_3", 
+            "text": "Filezilla \u8a2d\u5b9a\u756b\u9762  Filezilla \u61c9\u7528\u756b\u9762\uff0c\u5de6\u908a\u662f\u672c\u6a5f\u7aef\u8cc7\u6599\u593e\uff0c\u53f3\u908a\u662fserver\u7aef\u8cc7\u6599\u593e", 
+            "title": "\u64cd\u4f5c\u754c\u9762\u5716"
+        }, 
+        {
+            "location": "/basic/postgresql/", 
+            "text": "postgresql / postgis\n\n\n\u670d\u52d9\n\n\nPostgresql \u8207 PostGIS \u5df2\u5b89\u88dd\u5b8c\u6210\uff0c\u76ee\u524d\u4f9b\u7814\u7a76\u5ba4\u8a08\u756b\u61c9\u7528\uff0c\u4f46\u672a\u4f86\u9810\u8a08\u6703\u5c07\u8cc7\u6599\u6574\u7406\u4e26\u4e0a\u50b3\u81f3\u8cc7\u6599\u5eab\u4e2d\uff0c\u4f5c\u7232\u5206\u4eab\u7684\u4e00\u7a2e\u7ba1\u9053\n\n\n\u64cd\u4f5c\n\n\n\u66ab\u4e0d\u8aaa\u660e\n\n\n\u64cd\u4f5c\u754c\u9762\u5716\n\n\n(\u66ab\u7121)", 
+            "title": "\u7814\u7a76\u5ba4\u4e00\u822c\u8207\u7a7a\u9593\u8cc7\u6599\u5eab"
+        }, 
+        {
+            "location": "/basic/postgresql/#postgresql-postgis", 
+            "text": "", 
+            "title": "postgresql / postgis"
+        }, 
+        {
+            "location": "/basic/postgresql/#_1", 
+            "text": "Postgresql \u8207 PostGIS \u5df2\u5b89\u88dd\u5b8c\u6210\uff0c\u76ee\u524d\u4f9b\u7814\u7a76\u5ba4\u8a08\u756b\u61c9\u7528\uff0c\u4f46\u672a\u4f86\u9810\u8a08\u6703\u5c07\u8cc7\u6599\u6574\u7406\u4e26\u4e0a\u50b3\u81f3\u8cc7\u6599\u5eab\u4e2d\uff0c\u4f5c\u7232\u5206\u4eab\u7684\u4e00\u7a2e\u7ba1\u9053", 
+            "title": "\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/postgresql/#_2", 
+            "text": "\u66ab\u4e0d\u8aaa\u660e", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/basic/postgresql/#_3", 
+            "text": "(\u66ab\u7121)", 
+            "title": "\u64cd\u4f5c\u754c\u9762\u5716"
+        }, 
+        {
+            "location": "/basic/geoserver/", 
+            "text": "\u7a7a\u9593\u8cc7\u6599\u670d\u52d9 (Geoserver, Mapserver)\n\n\n\u670d\u52d9\n\n\nGeoserver \u8207 Mapserver \u6240\u63d0\u4f9b\u7684\u670d\u52d9\u5927\u81f4\u985e\u4f3c\uff0c\u90fd\u662f\u4f5c\u7232\u63d0\u4f9b\u5716\u8cc7\u7684\u5e73\u81fa\u3002Client \u7aef\u57fa\u672c\u53ea\u8981\u53d6\u5f97\u76f8\u61c9\u7684\u7db2\u5740\uff0c\u5373\u53ef\u5f9e geoserver/mapserver \u53d6\u5f97\u5716\u8cc7\u3002\n\n\n\u76ee\u524d\u5728 wenlab server\u4e0a\u9084\u6c92\u88dd\u597d\u3002\n\n\n\u64cd\u4f5c\n\n\n\u66ab\u4e0d\u8aaa\u660e\n\n\n\u64cd\u4f5c\u754c\u9762\u5716\n\n\n(\u66ab\u7121)", 
+            "title": "\u5730\u5716\u5716\u8cc7\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/geoserver/#geoserver-mapserver", 
+            "text": "", 
+            "title": "\u7a7a\u9593\u8cc7\u6599\u670d\u52d9 (Geoserver, Mapserver)"
+        }, 
+        {
+            "location": "/basic/geoserver/#_1", 
+            "text": "Geoserver \u8207 Mapserver \u6240\u63d0\u4f9b\u7684\u670d\u52d9\u5927\u81f4\u985e\u4f3c\uff0c\u90fd\u662f\u4f5c\u7232\u63d0\u4f9b\u5716\u8cc7\u7684\u5e73\u81fa\u3002Client \u7aef\u57fa\u672c\u53ea\u8981\u53d6\u5f97\u76f8\u61c9\u7684\u7db2\u5740\uff0c\u5373\u53ef\u5f9e geoserver/mapserver \u53d6\u5f97\u5716\u8cc7\u3002  \u76ee\u524d\u5728 wenlab server\u4e0a\u9084\u6c92\u88dd\u597d\u3002", 
+            "title": "\u670d\u52d9"
+        }, 
+        {
+            "location": "/basic/geoserver/#_2", 
+            "text": "\u66ab\u4e0d\u8aaa\u660e", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/basic/geoserver/#_3", 
+            "text": "(\u66ab\u7121)", 
+            "title": "\u64cd\u4f5c\u754c\u9762\u5716"
+        }, 
+        {
+            "location": "/extra/databaseinjupyterhub/", 
+            "text": "\u9023\u63a5\u8cc7\u6599\u5eab\u8207 jupyterhub\n\n\n\u900f\u904e python \u8a9e\u6cd5\uff0c\u53ef\u4ee5\u8f15\u6613\u7684\u9023\u63a5\u5230\u8cc7\u6599\u5eab\u53bb\uff0c\u9032\u884c\u8cc7\u6599\u7684\u53d6\u5f97\u4ee5\u57f7\u884c\u5206\u6790\u7a0b\u5f0f\u3002\n\n\n\u64cd\u4f5c\n\n\n\u66ab\u7121", 
+            "title": "\u9023\u63a5\u8cc7\u6599\u5eab\u8207 jupyterhub"
+        }, 
+        {
+            "location": "/extra/databaseinjupyterhub/#jupyterhub", 
+            "text": "\u900f\u904e python \u8a9e\u6cd5\uff0c\u53ef\u4ee5\u8f15\u6613\u7684\u9023\u63a5\u5230\u8cc7\u6599\u5eab\u53bb\uff0c\u9032\u884c\u8cc7\u6599\u7684\u53d6\u5f97\u4ee5\u57f7\u884c\u5206\u6790\u7a0b\u5f0f\u3002", 
+            "title": "\u9023\u63a5\u8cc7\u6599\u5eab\u8207 jupyterhub"
+        }, 
+        {
+            "location": "/extra/databaseinjupyterhub/#_1", 
+            "text": "\u66ab\u7121", 
+            "title": "\u64cd\u4f5c"
+        }, 
+        {
+            "location": "/extra/usejupyterandrstudio/", 
+            "text": "\u95dc\u65bc asus server \u4e0a\u5b89\u88dd\u7684 jupyterhub \u4ee5\u53ca rstudio-server\n\n\n\u9019\u7bc7\u6587\u7ae0\u6703\u8aaa\u660e\uff1a\n\n1. \u5982\u4f55\u7528 jupyterhub \u5beb\u7db2\u7d61\u8ab2\u7684\u4f5c\u696d\uff0c\u540c\u6642\u4f5c\u7b46\u8a18\u8aaa\u660e\n2. \u5b8c\u6210\u5f8c\uff0c\u900f\u904e rstudio-server \u7684 Rmarkdown \u8f49\u6210 .html\u3002\n\n\n\u5982\u4f55\u7528 jupyterhub \u5beb\u7a0b\u5f0f\uff0c\u4e26\u4f5c\u7b46\u8a18\n\n\n\n\n\u767b\u9304 http://wenlab.geog.ntu.edu.tw:18001 \n\n\n\u5728\u9069\u7576\u7684\u5730\u65b9\uff0c\u5982 /snaClass \uff0cNew \u4e00\u500b R notebook\n    \n\n\n\u5728\u9019\u6587\u4ef6\u4e2d\u958b\u59cb\u5beb R \u7684\u7a0b\u5f0f\uff0c\u5982\u53eb\u9032 library\u3001\u8a08\u7b97\u3001\u756b\u5716\u3001\u5beb function \u7b49\u3002\u7528 Shift+enter \u6703\u57f7\u884c\u7576\u524d\u7684 cell\uff0c\u4e26\u9032\u5165\u4e0b\u4e00\u500b\uff0c\u6216 ctrl+enter\uff0c\u6703\u57f7\u884c\u7576\u524d cell \u4e26\u505c\u7559\u5728\u540c\u4e00\u500b cell\u3002\n    \n\n\n\u7576\u8981\u653e\u8aaa\u660e\u7684\u6642\u5019\uff0c\u5728\u9700\u8981\u653e\u7684\u5730\u65b9\u958b\u4e00\u500b cell\uff0c\u5728\u4e0a\u9762\u539f\u4f86\u662f Code \u7684\u5730\u65b9\uff0c\u6539\u9078\u7a0b markdown\uff0c\u7136\u5f8c\u4ee5 markdown \u8a9e\u6cd5\u5beb\u8aaa\u660e\n    \n\n\n\u7576\u90fd\u6e96\u5099\u5b8c\u6210\u4e86\uff0c\u4f5c\u696d\u5beb\u5b8c\u4e86\uff0c\u8981\u8f38\u51fa\u4e4b\u524d\uff0c\u5148\u5c07 output \u7684\u6771\u897f\u5148\u780d\u6389\n    \n\n    \n\n\n\u900f\u904e File--\nDownload as--\n Markdown(.md) \u8f38\u51fa\uff0c\u4e0b\u8f09\u5230\u672c\u6a5f\u7aef\n    \n\n\n\n\n\u900f\u904e rstudio-server \u8f49 rmarkdown \u4e26\u8f38\u51fa html\n\n\n\n\n\u5148\u628a\u672c\u6a5f\u7aef\u7684\u6771\u897f\uff0c\u900f\u904e filezilla \u4e0a\u50b3\u5230\u81ea\u5df1\u7684\u7a7a\u9593\u88cf\n    \n\n\n\u767b\u9304 http://wenlab.geog.ntu.edu.tw:18000\n\n\n\u6253\u958b\u525b\u4e0a\u50b3\u7684\u6a94\u6848\uff0c\u4e26\u8f49\u5b58\u6210 rmd \u6a94\n    \n\n\n\u9700\u8981\u5c07 ```R \u6539\u6210 ```{r}\uff0c\u7528 replace--\n all\n\n\n\u8cc7\u6599\u6240\u5728\u4f4d\u7f6e\u8981\u8abf\u6574\u597d\uff1a ../ \u662f\u4e0a\u4e00\u500b\u8cc7\u6599\u593e\u7684\u610f\u601d ../../data \u662f\u524d\u5169\u5c64\u8cc7\u6599\u593e\u4e0b\u7684 data \u8cc7\u6599\u593e\n    \n\n\n\u8ddf\u55ae\u6a5f\u7248\u4e00\u6a23\uff0c\u6309 knit html\n\n\n\u5b58\u6a94 html\uff0c\u5b8c\u6210\u3002", 
+            "title": "\u7d50\u5408\u61c9\u7528 jupyterhub \u8207 rstudio \u4ee5\u7522\u751f Rmarkdown"
+        }, 
+        {
+            "location": "/extra/usejupyterandrstudio/#asus-server-jupyterhub-rstudio-server", 
+            "text": "\u9019\u7bc7\u6587\u7ae0\u6703\u8aaa\u660e\uff1a \n1. \u5982\u4f55\u7528 jupyterhub \u5beb\u7db2\u7d61\u8ab2\u7684\u4f5c\u696d\uff0c\u540c\u6642\u4f5c\u7b46\u8a18\u8aaa\u660e\n2. \u5b8c\u6210\u5f8c\uff0c\u900f\u904e rstudio-server \u7684 Rmarkdown \u8f49\u6210 .html\u3002", 
+            "title": "\u95dc\u65bc asus server \u4e0a\u5b89\u88dd\u7684 jupyterhub \u4ee5\u53ca rstudio-server"
+        }, 
+        {
+            "location": "/extra/usejupyterandrstudio/#jupyterhub", 
+            "text": "\u767b\u9304 http://wenlab.geog.ntu.edu.tw:18001   \u5728\u9069\u7576\u7684\u5730\u65b9\uff0c\u5982 /snaClass \uff0cNew \u4e00\u500b R notebook\n      \u5728\u9019\u6587\u4ef6\u4e2d\u958b\u59cb\u5beb R \u7684\u7a0b\u5f0f\uff0c\u5982\u53eb\u9032 library\u3001\u8a08\u7b97\u3001\u756b\u5716\u3001\u5beb function \u7b49\u3002\u7528 Shift+enter \u6703\u57f7\u884c\u7576\u524d\u7684 cell\uff0c\u4e26\u9032\u5165\u4e0b\u4e00\u500b\uff0c\u6216 ctrl+enter\uff0c\u6703\u57f7\u884c\u7576\u524d cell \u4e26\u505c\u7559\u5728\u540c\u4e00\u500b cell\u3002\n      \u7576\u8981\u653e\u8aaa\u660e\u7684\u6642\u5019\uff0c\u5728\u9700\u8981\u653e\u7684\u5730\u65b9\u958b\u4e00\u500b cell\uff0c\u5728\u4e0a\u9762\u539f\u4f86\u662f Code \u7684\u5730\u65b9\uff0c\u6539\u9078\u7a0b markdown\uff0c\u7136\u5f8c\u4ee5 markdown \u8a9e\u6cd5\u5beb\u8aaa\u660e\n      \u7576\u90fd\u6e96\u5099\u5b8c\u6210\u4e86\uff0c\u4f5c\u696d\u5beb\u5b8c\u4e86\uff0c\u8981\u8f38\u51fa\u4e4b\u524d\uff0c\u5148\u5c07 output \u7684\u6771\u897f\u5148\u780d\u6389\n     \n      \u900f\u904e File-- Download as--  Markdown(.md) \u8f38\u51fa\uff0c\u4e0b\u8f09\u5230\u672c\u6a5f\u7aef", 
+            "title": "\u5982\u4f55\u7528 jupyterhub \u5beb\u7a0b\u5f0f\uff0c\u4e26\u4f5c\u7b46\u8a18"
+        }, 
+        {
+            "location": "/extra/usejupyterandrstudio/#rstudio-server-rmarkdown-html", 
+            "text": "\u5148\u628a\u672c\u6a5f\u7aef\u7684\u6771\u897f\uff0c\u900f\u904e filezilla \u4e0a\u50b3\u5230\u81ea\u5df1\u7684\u7a7a\u9593\u88cf\n      \u767b\u9304 http://wenlab.geog.ntu.edu.tw:18000  \u6253\u958b\u525b\u4e0a\u50b3\u7684\u6a94\u6848\uff0c\u4e26\u8f49\u5b58\u6210 rmd \u6a94\n      \u9700\u8981\u5c07 ```R \u6539\u6210 ```{r}\uff0c\u7528 replace--  all  \u8cc7\u6599\u6240\u5728\u4f4d\u7f6e\u8981\u8abf\u6574\u597d\uff1a ../ \u662f\u4e0a\u4e00\u500b\u8cc7\u6599\u593e\u7684\u610f\u601d ../../data \u662f\u524d\u5169\u5c64\u8cc7\u6599\u593e\u4e0b\u7684 data \u8cc7\u6599\u593e\n      \u8ddf\u55ae\u6a5f\u7248\u4e00\u6a23\uff0c\u6309 knit html  \u5b58\u6a94 html\uff0c\u5b8c\u6210\u3002", 
+            "title": "\u900f\u904e rstudio-server \u8f49 rmarkdown \u4e26\u8f38\u51fa html"
+        }, 
+        {
+            "location": "/about/", 
+            "text": "\u95dc\u65bc Wenlab Server\n\n\n\u786c\u9ad4\n\n\n\n\n\u578b\u865f\uff1aASUS TS110-E8-PI4 Server\n\n\nCPU: Intel Xeon CPU E3-1220 v3 @3.10GHz \n\n\nRam: 16GB\n\n\n\n\n\u7cfb\u7d71\n\n\nOS: Debian 8 Jessie (stable)\n\n\nServer application\n\n\n\n\nRStudio server\n\n\nJupyterhub\n\n\nShiny server\n\n\nvsftpd\n\n\nApache2\n\n\nPostgresql + PostGIS\n\n\nMysql (\u672a\u5b8c\u6210\u8a2d\u5b9a)\n\n\nGeoserver/Mapserver/TileStache (\u898f\u5283\u4e2d)\n\n\n\n\n\u6b63\u5728\u904b\u4f5c\u4e2d\u7684\u670d\u52d9\n\n\n\n\nWenlab \u7814\u7a76\u5ba4\u7db2\u7ad9\n\n\n\u81fa\u7063\u6230\u5f8c\u4eba\u53e3\u666e\u67e5 - \u4e92\u52d5\u5f0f\u7db2\u9801\u5730\u5716\u7248\n\n\nCDC \u8a08\u756b\n\n\n\u667a\u6167\u57ce\u5e02\u5b50\u8a08\u756b4\n\n\n\n\n\u806f\u7d61\n\n\n\u9673\u5a01\u5168\nwcchin.88@gmail.com", 
+            "title": "\u95dc\u65bc"
+        }, 
+        {
+            "location": "/about/#wenlab-server", 
+            "text": "", 
+            "title": "\u95dc\u65bc Wenlab Server"
+        }, 
+        {
+            "location": "/about/#_1", 
+            "text": "\u578b\u865f\uff1aASUS TS110-E8-PI4 Server  CPU: Intel Xeon CPU E3-1220 v3 @3.10GHz   Ram: 16GB", 
+            "title": "\u786c\u9ad4"
+        }, 
+        {
+            "location": "/about/#_2", 
+            "text": "OS: Debian 8 Jessie (stable)", 
+            "title": "\u7cfb\u7d71"
+        }, 
+        {
+            "location": "/about/#server-application", 
+            "text": "RStudio server  Jupyterhub  Shiny server  vsftpd  Apache2  Postgresql + PostGIS  Mysql (\u672a\u5b8c\u6210\u8a2d\u5b9a)  Geoserver/Mapserver/TileStache (\u898f\u5283\u4e2d)", 
+            "title": "Server application"
+        }, 
+        {
+            "location": "/about/#_3", 
+            "text": "Wenlab \u7814\u7a76\u5ba4\u7db2\u7ad9  \u81fa\u7063\u6230\u5f8c\u4eba\u53e3\u666e\u67e5 - \u4e92\u52d5\u5f0f\u7db2\u9801\u5730\u5716\u7248  CDC \u8a08\u756b  \u667a\u6167\u57ce\u5e02\u5b50\u8a08\u756b4", 
+            "title": "\u6b63\u5728\u904b\u4f5c\u4e2d\u7684\u670d\u52d9"
+        }, 
+        {
+            "location": "/about/#_4", 
+            "text": "\u9673\u5a01\u5168\nwcchin.88@gmail.com", 
+            "title": "\u806f\u7d61"
+        }
+    ]
+}
