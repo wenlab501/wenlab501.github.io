@@ -43,8 +43,8 @@
 }
 .csslider > ul {
   position: relative;
-  width: 820px;
-  height: 420px;
+  width: 900px;
+  height: 320px;
   z-index: 1;
   font-size: 0;
   line-height: 0;
