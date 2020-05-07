@@ -11,6 +11,9 @@
 .csslider > input {
   display: none;
 }
+.csslider > input:nth-of-type(11):checked ~ ul li:first-of-type {
+  margin-left: -1000%;
+}
 .csslider > input:nth-of-type(10):checked ~ ul li:first-of-type {
   margin-left: -900%;
 }
