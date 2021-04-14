@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>地理計算科學研究室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.3.4/cerulean/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href='http://fonts.googleapis.com/earlyaccess/cwtexhei.css' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/cwtexyen.css' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+
+    <link href="./css/site.css" rel="stylesheet" media="screen">
+    <link href="./css/site.css" rel="stylesheet" media="screen">
+    <link href="./css/syntax.css" rel="stylesheet" media="screen">
+    <link href="./css/bootstrap.overwrite.css" rel="stylesheet" media="screen">
+	<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48968311-4', 'jandecaluwe.com');
+  ga('send', 'pageview');
+
+</script>
+
+	<link rel="stylesheet" href="./css/prism.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/shuffle-styles.css" />
+	<!--<script src="./js/jquery-2.1.4.js"></script>
+	<script src="./js/modernizr.custom.min.js"></script>
+	<script src="./js/shuffle.js"></script>
+	<script src="./js/jquery.shuffle.modernizr"></script>-->
+	
+  <script src="./js/modernizr.custom.min.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function() {
+  var $grid = $('#grid'),
+      $sizer = $grid.find('.shuffle__sizer');
+
+  $grid.shuffle({
+    itemSelector: '.picture-item',
+    sizer: $sizer
+  });
+});
+</script>
+	  
+<link rel="stylesheet" href="css/csslider.css" />
+<style>
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	::-webkit-scrollbar {
+		width: 2px;
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	::-webkit-scrollbar-track {
+		background: none;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: rgba(74, 168, 0, 0.6);
+	}
+
+	ul, ol {
+		padding-left: 40px;
+	}
+
+	html, body {
+		height: 100%;
+		text-align: center;
+		font: 400 100% 'Raleway', 'Lato';
+		background-color: #282828;
+		color: #CCC;
+	}
+
+	h1 {
+		font-weight: 700;
+		font-size: 310%;
+	}
+
+	h2 {
+		font-weight: 400;
+		font-size: 120%;
+		color: #71AD37;
+	}
+
+	#slider1 {
+		margin: 20px;
+		font-family: 'Lato';
+	}
+
+		#slider1 > ul > li:nth-of-type(3) {
+			background: url(./themes/fruit.jpg);
+		}
+
+		#slider1 > input:nth-of-type(3):checked ~ ul #bg {
+			width: 80%;
+			padding: 22px;
+			-moz-transition: .5s .5s;
+			-o-transition: .5s .5s;
+			-webkit-transition: .5s .5s;
+			transition: .5s .5s;
+		}
+
+			#slider1 > input:nth-of-type(3):checked ~ ul #bg div {
+				-moz-transform: translate(0);
+				-ms-transform: translate(0);
+				-o-transform: translate(0);
+				-webkit-transform: translate(0);
+				transform: translate(0);
+				-moz-transition: .5s .9s;
+				-o-transition: .5s .9s;
+				-webkit-transition: .5s .9s;
+				transition: .5s .9s;
+			}
+
+	#bg {
+		color: #000;
+		padding: 22px 0;
+		position: absolute;
+		left: 0;
+		top: 16%;
+		height: 20%;
+		width: 0;
+		z-index: 10;
+		overflow: hidden;
+	}
+
+		#bg:before {
+			content: '';
+			position: absolute;
+			left: -1px;
+			top: 1px;
+			height: 100%;
+			width: 100%;
+			z-index: -1;
+			background: url(./img/WenLab_Logo_simple2.PNG) 1px 23%;
+			-webkit-filter: blur(7px);
+		}
+
+		#bg:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			width: 100%;
+			z-index: 20;
+			background: rgba(0, 0, 0, 0.35);
+			pointer-events: none;
+		}
+
+		#bg div {
+			-moz-transform: translate(120%);
+			-ms-transform: translate(120%);
+			-o-transform: translate(120%);
+			-webkit-transform: translate(120%);
+			transform: translate(120%);
+		}
+
+	.scrollable p {
+		padding: 30px;
+		text-align: justify;
+		line-height: 140%;
+		font-size: 120%;
+	}
+</style>
+	
+  <!-- Start WOWSlider.com HEAD section -->
+  <link rel="stylesheet" type="text/css" href="engine1/style.css" />
+  <script type="text/javascript" src="engine1/jquery.js"></script>
+  <!-- End WOWSlider.com HEAD section -->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./"><b>地理計算科學研究室</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav navbar-left">
+ 
+            <li><a href="./member.html">成員介紹</a></li>
+            <li><a href="./honoraward.html">獲獎榮譽</a></li>
+            <li><a href="./teaching.html">教學課程</a></li>
+            <li><a href="./research.html">研究主題</a></li>
+            <li><a href="./publication.html">論文著作</a></li>
+            <li><a href="./student_research.html">學生論文</a></li>
+            <li><a href="./resource.html">研究資源</a></li>
+            
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./contact.html">聯絡資訊</a></li>
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<br>
+<div align="center"><img src="./img/logo_3_3.png" height='200'></img></div>
+<!--
+<div class="jumbotron">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1><font face="cwTeXYen">地理計算科學研究室</font></h1>
+                <h2><font face="Slabo">Lab for Geospatial Computational Science</font></h2>
+             </div>
+        </div>
+    </div>
+</div>
+-->
+
+<!-- Start WOWSlider.com BODY section -->
+<div id="wowslider-container1">
+<div class="ws_images"><ul>
+		<li><img src="data1/images/banner3.png" alt="研究室合照" title="研究室合照" id="wows1_0"/></li>
+		<li><img src="data1/images/banner6.png" alt="登革熱研究相關報導" title="登革熱研究相關報導" id="wows1_1"/></li>
+		<li><img src="data1/images/banner7.png" alt="2017「未來科技展」－個人化適地性疫情時空預警架構" title="2017「未來科技展」－個人化適地性疫情時空預警架構" id="wows1_2"/></li>
+		<li><img src="data1/images/banner10.png" alt="2017「未來科技展」現場（許景舜）" title="2017「未來科技展」現場（許景舜）" id="wows1_3"/></li>
+		<li><img src="data1/images/banner11.png" alt="榮獲未來科技突破獎" title="榮獲未來科技突破獎" id="wows1_4"/></li>
+		<li><img src="data1/images/banner14.png" alt="生活圈防疫研究（郭飛鷹）" title="生活圈防疫研究（郭飛鷹）" id="wows1_5"/></li>
+		<li><img src="data1/images/banner42.png" alt="個人化疫情風險管理與預警系統（杜承軒）" title="個人化疫情風險管理與預警系統（杜承軒）" id="wows1_6"/></li>
+		<li><img src="data1/images/banner52.png" alt="從飛機航班評估全球傳染病傳播風險（簡妙蓉）" title="從飛機航班評估全球傳染病傳播風險（簡妙蓉）" id="wows1_7"/></li>
+		<li><img src="data1/images/research.png" alt="Spatially Adjusted Time-varying Reproductive Numbers: Understanding the Geographical Expansion of Urban Dengue Outbreaks" title="Spatially Adjusted Time-varying Reproductive Numbers: Understanding the Geographical Expansion of Urban Dengue Outbreaks" id="wows1_8"/></li>
+		<li><a href="http://wowslider.net"><img src="data1/images/research_1.png" alt="html5 slideshow" title="Revisiting the role of rainfall variability and its interactive effects with the built environment in urban dengue outbreaks" id="wows1_9"/></a></li>
+		<li><img src="data1/images/research_2.png" alt="Evaluating the role of disease importation in the spatiotemporal transmission of indigenous dengue outbreak" title="Evaluating the role of disease importation in the spatiotemporal transmission of indigenous dengue outbreak" id="wows1_10"/></li>
+	</ul></div>
+	<div class="ws_bullets"><div>
+		<a href="#" title="研究室合照"><span><img src="data1/tooltips/banner3.png" alt="研究室合照"/>1</span></a>
+		<a href="#" title="登革熱研究相關報導"><span><img src="data1/tooltips/banner6.png" alt="登革熱研究相關報導"/>2</span></a>
+		<a href="#" title="2017「未來科技展」－個人化適地性疫情時空預警架構"><span><img src="data1/tooltips/banner7.png" alt="2017「未來科技展」－個人化適地性疫情時空預警架構"/>3</span></a>
+		<a href="#" title="2017「未來科技展」現場（許景舜）"><span><img src="data1/tooltips/banner10.png" alt="2017「未來科技展」現場（許景舜）"/>4</span></a>
+		<a href="#" title="榮獲未來科技突破獎"><span><img src="data1/tooltips/banner11.png" alt="榮獲未來科技突破獎"/>5</span></a>
+		<a href="#" title="生活圈防疫研究（郭飛鷹）"><span><img src="data1/tooltips/banner14.png" alt="生活圈防疫研究（郭飛鷹）"/>6</span></a>
+		<a href="#" title="個人化疫情風險管理與預警系統（杜承軒）"><span><img src="data1/tooltips/banner42.png" alt="個人化疫情風險管理與預警系統（杜承軒）"/>7</span></a>
+		<a href="#" title="從飛機航班評估全球傳染病傳播風險（簡妙蓉）"><span><img src="data1/tooltips/banner52.png" alt="從飛機航班評估全球傳染病傳播風險（簡妙蓉）"/>8</span></a>
+		<a href="#" title="Spatially Adjusted Time-varying Reproductive Numbers: Understanding the Geographical Expansion of Urban Dengue Outbreaks"><span><img src="data1/tooltips/research.png" alt="Spatially Adjusted Time-varying Reproductive Numbers: Understanding the Geographical Expansion of Urban Dengue Outbreaks"/>9</span></a>
+		<a href="#" title="Revisiting the role of rainfall variability and its interactive effects with the built environment in urban dengue outbreaks"><span><img src="data1/tooltips/research_1.png" alt="Revisiting the role of rainfall variability and its interactive effects with the built environment in urban dengue outbreaks"/>10</span></a>
+		<a href="#" title="Evaluating the role of disease importation in the spatiotemporal transmission of indigenous dengue outbreak"><span><img src="data1/tooltips/research_2.png" alt="Evaluating the role of disease importation in the spatiotemporal transmission of indigenous dengue outbreak"/>11</span></a>
+	</div></div><div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">slideshow html code</a> by WOWSlider.com v9.0</div>
+<div class="ws_shadow"></div>
+</div>	
+<script type="text/javascript" src="engine1/wowslider.js"></script>
+<script type="text/javascript" src="engine1/script.js"></script>
+<!-- End WOWSlider.com BODY section -->
+
+	
+    <div class="footer">
+        <p><a href="http://www.ntu.edu.tw">國立臺灣大學</a> | <a href="http://www.geog.ntu.edu.tw">地理環境資源學系暨研究所</a> | <a href="http://wenlab.geog.ntu.edu.tw">地理計算科學研究室</a></p>
+        <p>e-mail:  wenthung@ntu.edu.tw | 電話: +886-2-33665847 </p>
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<!-- Shuffle! -->
+<script src="./js/jquery.shuffle.js"></script>
+
+<!-- Syntax highlighting via Prism -->
+<script src="./js/prism.js"></script>
+
+<!--<script>var site_url = "./Shuffle";</script>-->
+
+<script src="./js/page.js"></script>
+<script src="./js/evenheights.js"></script>
+
+<script src="./js/homepage.js"></script>
+  </body>
+</html>
